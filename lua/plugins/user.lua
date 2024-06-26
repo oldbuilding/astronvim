@@ -5,8 +5,7 @@
 
 ---@type LazySpec
 return {
-  -- Ensure neoconf is loaded first
-  { "plugins.neoconf" },
+  require("neoconf").setup(),
 
   {
     "rcarriga/nvim-notify",
@@ -31,7 +30,7 @@ return {
       require("nvim-surround").setup({ })
     end
   },
-  
+
   -- == Examples of Overriding Plugins ==
 
   -- customize alpha options
