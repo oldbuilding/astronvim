@@ -5,10 +5,18 @@
 
 ---@type LazySpec
 return {
+  -- Ensure neoconf is loaded first
+  { "plugins.neoconf" },
+
+  {
+    "rcarriga/nvim-notify",
+    enabled = false,
+  },
 
   -- == Examples of Adding Plugins ==
-
+  -- -- lazy.nvim
   "andweeb/presence.nvim",
+
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
