@@ -15,5 +15,6 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+require "neoconf"
 require "lazy_setup"
 require "polish"
