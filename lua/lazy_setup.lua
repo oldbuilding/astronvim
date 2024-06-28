@@ -33,7 +33,7 @@ require("lazy").setup({
         "tarPlugin",
         "tohtml",
         "zipPlugin",
-        "rcarriga/nvim-notify",
+        -- "rcarriga/nvim-notify",
       },
     },
   },

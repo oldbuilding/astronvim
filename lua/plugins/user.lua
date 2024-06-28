@@ -5,7 +5,7 @@
 
 ---@type LazySpec
 return {
-  require("neoconf").setup(),
+  -- require("neoconf").setup(),
 
   {
     "rcarriga/nvim-notify",
