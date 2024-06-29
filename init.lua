@@ -1,6 +1,5 @@
 if vim.env.VSCODE then vim.g.vscode = true end
 
-require "config.keymaps"
 
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
@@ -33,6 +32,5 @@ if not pcall(require, "lazy") then
     vim.cmd.quit()
 end
 
-require "config.options"
 require "lazy_setup"
 require "polish"

@@ -4,8 +4,8 @@ return {
     opts = {
         mappings = {
             n = {
-                [";"] = { ":", desc = "; :", noremap = true, silent = true },
-                [":"] = { ";", desc = ": ;", noremap = true, silent = true },
+                [";"] = { ":", desc = "Invert ; :", noremap = true, silent = true },
+                [":"] = { ";", desc = "Invert : ;", noremap = true, silent = true },
             },
             i = {},
         }

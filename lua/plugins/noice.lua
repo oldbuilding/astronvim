@@ -6,7 +6,6 @@ return {
         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
         "MunifTanjim/nui.nvim"
     },
-    config = { lsp = { signature = { enabled = false } } },
     opts = function(plugin, opts)
         require("noice").setup {
             views = {
@@ -32,17 +31,17 @@ return {
                     },
                     border = {
                         style = "rounded",
-                        padding = { 0, 1 }
+                        padding = {0, 1}
                     },
                     win_options = {
-                        winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" }
+                        winhighlight = {Normal = "Normal", FloatBorder = "DiagnosticInfo"}
                     }
                 }
             },
             routes = {
                 {
                     view = "cmdline",
-                    filter = { event = "msg_showmode" }
+                    filter = {event = "msg_showmode"}
                 }
             },
             lsp = {
@@ -84,10 +83,10 @@ return {
                         lang = "markdown",
                         replace = true,
                         render = "plain",
-                        format = { "{message}" },
+                        format = {"{message}"},
                         border = {
                             style = "rounded",
-                            padding = { 0, 1 }
+                            padding = {0, 1}
                         }
                     }
                 }
@@ -106,11 +105,11 @@ return {
             },
             -- you can enable a preset for easier configuration
             presets = {
-                bottom_search = false,        -- use a classic bottom cmdline for search
-                command_palette = false,      -- position the cmdline and popupmenu together
+                bottom_search = false, -- use a classic bottom cmdline for search
+                command_palette = false, -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = true,            -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true         -- add a border to hover docs and signature help
+                inc_rename = true, -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = true -- add a border to hover docs and signature help
             },
             cmdline = {
                 view = "cmdline"
