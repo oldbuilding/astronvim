@@ -12,28 +12,16 @@ return {
         enabled = false
     },
     -- == Examples of Adding Plugins ==
-    -- -- lazy.nvim
-    "andweeb/presence.nvim",
     {
-        "ray-x/lsp_signature.nvim",
-        event = "BufRead",
-        config = function()
-            require("lsp_signature").setup()
-        end
+        "nvim-neorg/neorg",
+        opts = {}
     },
-    {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({})
-        end
-    },
-    -- == Examples of Overriding Plugins ==
-
-    -- customize alpha options
     {
         "goolord/alpha-nvim",
+        -- dependencies = {
+        --     "nvim-tree/nvim-web-devicons",
+        --     "nvim-lua/plenary.nvim"
+        -- },
         opts = function(_, opts)
             -- customize the dashboard header
             opts.section.header.val = {
@@ -98,6 +86,24 @@ return {
                 -- disable for .vim files, but it work for another filetypes
                 Rule("a", "a", "-vim")
             )
+        end
+    },
+    -- -- lazy.nvim
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        enabled = true,
+        config = function()
+            require("lsp_signature").setup()
+        end
+    },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        enabled = true,
+        config = function()
+            require("nvim-surround").setup({})
         end
     }
 }

@@ -1,6 +1,11 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then
+  return {}
+end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 return {
   "neovim/nvim-lspconfig",
+  dependencies = {
+    "folke/neoconf.nvim"
+  },
   config = function()
     -- require("neoconf").setup() -- Ensure neoconf is setup here if needed
     local lspconfig = require "lspconfig"
@@ -8,10 +13,10 @@ return {
     lspconfig.lua_ls.setup {
       settings = {
         Lua = {
-          format = { enable = false },
-        },
-      },
+          format = {enable = false}
+        }
+      }
     }
     -- Other LSP servers...
-  end,
+  end
 }
