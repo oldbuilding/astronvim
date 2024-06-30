@@ -2,8 +2,9 @@
 
 return {
   "folke/neoconf.nvim",
-  config = function()
-    require("neoconf").setup()
-  end,
-  priority = 1000, -- Ensure this runs before other plugins
+  config = false,
+  enabled = true,
+  lazy = false,
+  cmd = "Neoconf",
+  priority = 1000 -- Ensure this runs before other plugins
 }

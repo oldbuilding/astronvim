@@ -13,6 +13,9 @@ local function set_environment_vars()
     vim.env.PATH = hererocks_path .. "/bin:" .. vim.env.PATH
 end
 
+require "config.options"
+require "keymaps"
+
 require("lazy").setup(
     {
         {
@@ -40,9 +43,10 @@ require("lazy").setup(
     } --[[@as LazySpec]],
     {
         -- Configure any other `lazy.nvim` configuration options here
-        install = {colorscheme = {"astromars", "astrodark", "habamax"}},
+        install = {colorscheme = {"astromars", "habamax", "rose-pine"}},
         colorscheme = "astromars",
         ui = {backdrop = 90, border = "rounded"},
+        checker = {enabled = true},
         performance = {
             rtp = {
                 -- disable some rtp plugins, add more to your liking
@@ -57,6 +61,3 @@ require("lazy").setup(
         }
     } --[[@as LazyConfig]]
 )
-
-require "config.keymaps"
-require "config.options"
