@@ -5,6 +5,6 @@ return {
   cmd = "Neoconf",
   config = false,
   enabled = true,
-  lazy = false,
+  lazy = true,
   priority = 1000 -- Ensure this runs before other plugins
 }
