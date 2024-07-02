@@ -1,7 +1,7 @@
 -- don't do anything in vscode instances
-if vim.g.vscode then
-  return {}
-end
+-- if vim.g.vscode then
+--   return {}
+-- end
 
 -- AstroUI provides the basis for configuring the AstroNvim User Interface
 -- Configuration documentation can be found with `:h astroui`
