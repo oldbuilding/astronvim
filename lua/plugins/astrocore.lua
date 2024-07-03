@@ -82,7 +82,7 @@ return {
         lazyredraw = false,
         linebreak = true,
         list = true, -- show some invisible chars,
-        listchars = "tab:G .,trail:~,nbsp:_,extends:>,precedes:<", -- ,eol:$',
+        listchars = "tab: .,trail:~,nbsp:_,extends:>,precedes:<", -- ,eol:$',
         magic = true,
         matchtime = 2, -- tenths of a second before matching (){}[] is highlighted
         mouse = "a",
