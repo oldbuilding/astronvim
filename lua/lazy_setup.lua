@@ -19,11 +19,8 @@ local function set_environment_vars()
   if brewopt_path == nil or brewopt_path == "" then brewopt_path = "/home/linuxbrew/.linuxbrew/opt" end
   local git_exec_path = brewopt_path .. "/git/libexec/git-core"
   vim.env.GIT_EXEC_PATH = git_exec_path
-  -- vim.api.nvim_echo(
-  --   { { "GIT EXEC PATH " .. git_exec_path .. " | " .. vim.fn.getenv("GIT_EXEC_PATH"), "None" } },
-  --   false,
-  --   {}
-  -- )
+  -- require("vlog").debug("BREWOPT PATH " .. brewopt_path .. " | " .. vim.fn.getenv("BREWOPT_PATH"))
+  -- require("vlog").debug("GIT EXEC PATH " .. git_exec_path .. " | " .. vim.fn.getenv("GIT_EXEC_PATH"))
 end
 
 -- local function set_leader()
@@ -36,7 +33,7 @@ end
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^4", -- Remove version tracking to elect for nighly AstroNvim
+    -- version = "^4", -- Remove version tracking to elect for nighly AstroNvim
     import = "astronvim.plugins",
     opts = {
       -- AstroNvim options must be set here with the `import` key

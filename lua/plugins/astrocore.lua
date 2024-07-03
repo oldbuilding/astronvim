@@ -170,6 +170,50 @@ return {
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         ["<Leader>b"] = { desc = "Buffers" },
+
+        ["<Leader>Lne"] = {
+          function() require("noice").cmd("errors") end,
+          desc = "Noice Errors",
+        },
+        ["<Leader>Lna"] = {
+          function() require("noice").cmd("all") end,
+          desc = "Noice All",
+        },
+        ["<Leader>LnD"] = {
+          function() require("noice").cmd("disable") end,
+          desc = "Noice Disable",
+        },
+        ["<Leader>LnE"] = {
+          function() require("noice").cmd("enable") end,
+          desc = "Noice Enable",
+        },
+        ["<Leader>Lnt"] = {
+          function() require("noice").cmd("telescope") end,
+          desc = "Noice Telescope",
+        },
+        ["<Leader>Lnl"] = {
+          function() require("noice").cmd("last") end,
+          desc = "Noice Last",
+        },
+        ["<Leader>Lnh"] = {
+          function() require("noice").cmd("history") end,
+          desc = "Noice History",
+        },
+        ["<Leader>Lnx"] = {
+          function() require("noice").cmd("dismiss") end,
+          desc = "Noice Clear All",
+        },
+        ["<Leader>Lmm"] = {
+          "<Cmd>messages<CR>",
+          desc = "Show Messages",
+        },
+        ["<Leader>Lmc"] = {
+          "<Cmd>messages clear<CR>",
+          desc = "Clear Messages",
+        },
+        ["<Leader>L"] = { desc = "Logs" },
+        ["<Leader>Ln"] = { desc = "Logs > Noice" },
+        ["<Leader>Lm"] = { desc = "Logs > Messages" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },
