@@ -1,2 +1,3 @@
 undo/
-lua_env/
+undo/*
+lua_env/*
