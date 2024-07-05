@@ -4,9 +4,8 @@ return {
   "rebelot/kanagawa.nvim",
   name = "kanagawa",
   priority = 1000,
-  lazy = true,
+  lazy = false,
   enabled = true,
-  build = ":KanagawaCompile",
   opts = function()
     return {
       compile = true, -- enable compiling the colorscheme
@@ -34,8 +33,8 @@ return {
     }
   end,
   config = function(_, opts)
-    vim.cmd("KanagawaCompile")
     require("kanagawa").setup(opts)
+    vim.cmd("KanagawaCompile")
     vim.cmd.colorscheme("kanagawa")
   end,
 }
