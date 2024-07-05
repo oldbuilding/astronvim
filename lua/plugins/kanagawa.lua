@@ -9,7 +9,7 @@ return {
   opts = function()
     return {
       compile = true, -- enable compiling the colorscheme
-      undercurl = true, -- enable undercurls
+      undercurl = true, -- enable undercurl undercurls
       commentStyle = { italic = true },
       functionStyle = {},
       keywordStyle = { italic = true },

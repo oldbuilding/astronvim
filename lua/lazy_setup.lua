@@ -19,16 +19,7 @@ local function set_environment_vars()
   if brewopt_path == nil or brewopt_path == "" then brewopt_path = "/home/linuxbrew/.linuxbrew/opt" end
   local git_exec_path = brewopt_path .. "/git/libexec/git-core"
   vim.env.GIT_EXEC_PATH = git_exec_path
-  -- require("vlog").debug("BREWOPT PATH " .. brewopt_path .. " | " .. vim.fn.getenv("BREWOPT_PATH"))
-  -- require("vlog").debug("GIT EXEC PATH " .. git_exec_path .. " | " .. vim.fn.getenv("GIT_EXEC_PATH"))
 end
-
--- local function set_leader()
---   local my_leader_ = "<M-t>"
---   vim.api.nvim_set_keymap("n", my_leader_, "<Nop>", { noremap = true, silent = true })
---   vim.g.mapleader(my_leader_)
---   return my_leader_
--- end
 
 require("lazy").setup({
   {
@@ -65,15 +56,15 @@ require("lazy").setup({
       "rose-pine",
     },
   },
-  colorscheme = "tokyonight-day",
-  ui = { backdrop = 80, border = "rounded" },
+  colorscheme = "kanagawa-wave",
+  ui = { backdrop = 60, border = "rounded" },
   checker = { enabled = true },
   performance = {
     rtp = {
       -- disable some rtp plugins, add more to your liking
       disabled_plugins = {
         "gzip",
-        -- "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "zipPlugin",

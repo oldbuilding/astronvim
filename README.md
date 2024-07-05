@@ -27,8 +27,24 @@ You can also just clone this repository directly if you do not want to track you
 git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```
 
+#### Spell file configuration
+
+```sh
+mkdir -p ~/.dotfiles.git/.config/${NVIM_APPNAME:-astronvim}/spell
+touch ~/.dotfiles.git/.config/${NVIM_APPNAME:-astronvim}/spell/en.utf-8.add
+nvim --headless -c "set spell" -c "qall"
+nvim --headless -c "set spellfile=~/.config/${NVIM_APPNAME:-astronvim}/spell/en.utf-8.add" -c "qall"
+nvim --headless -c "mkspell! ~/.config/${NVIM_APPNAME:-astronvim}/spell/en.utf-8.add" -c "qall"
+nvim --headless -c "echo &spellfile" -c "echo &spelllang" -c "echo &spell" -c "qall"
+nvim --headless -c "spellgood astronvim" -c "qall"
+```
+
 #### Start Neovim
 
 ```shell
 nvim
+```
+
+```
+
 ```

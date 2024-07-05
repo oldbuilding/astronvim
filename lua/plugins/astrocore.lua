@@ -11,6 +11,8 @@
 local transparency_amount = 0 -- 0 opaque to 100 transparent
 local update_time_ms = 300 -- save swap file and trigger CursorHold
 local keymap_sequence_timeout_ms = 400 -- time (ms) to wait for a mapped sequence to complete (default 1000)
+local spell_util = require("utils.spell")
+local spellfile_path, spellfile_name = spell_util.get_spell_directory_and_filename()
 
 ---@type LazySpec
 return {
@@ -46,7 +48,7 @@ return {
       opt = {
         -- vim.opt.<key>
         spell = true, -- sets vim.opt.spell
-        spellfile = "~/.config/" .. os.getenv("NVIM_APPNAME") .. "/spell/en.utf-8.add",
+        spellfile = spellfile_path .. spellfile_name,
         spelllang = { "en_us" },
         spelloptions = "camel",
         autowrite = true,
@@ -175,45 +177,51 @@ return {
           function() require("noice").cmd("errors") end,
           desc = "Noice Errors",
         },
-        ["<Leader>Lna"] = {
+        ["<Leader>La"] = {
           function() require("noice").cmd("all") end,
           desc = "Noice All",
         },
-        ["<Leader>LnD"] = {
+        ["<Leader>Ll"] = {
+          function() require("noice").cmd("log") end,
+          desc = "Noice Log",
+        },
+        ["<Leader>LD"] = {
           function() require("noice").cmd("disable") end,
           desc = "Noice Disable",
         },
-        ["<Leader>LnE"] = {
+        ["<Leader>LE"] = {
           function() require("noice").cmd("enable") end,
           desc = "Noice Enable",
         },
-        ["<Leader>Lnt"] = {
+        ["<Leader>Lt"] = {
           function() require("noice").cmd("telescope") end,
           desc = "Noice Telescope",
         },
-        ["<Leader>Lnl"] = {
+        ["<Leader>L."] = {
           function() require("noice").cmd("last") end,
           desc = "Noice Last",
         },
-        ["<Leader>Lnh"] = {
+        ["<Leader>Lh"] = {
           function() require("noice").cmd("history") end,
           desc = "Noice History",
         },
-        ["<Leader>Lnx"] = {
+        ["<Leader>Lx"] = {
           function() require("noice").cmd("dismiss") end,
           desc = "Noice Clear All",
         },
-        ["<Leader>Lmm"] = {
+        ["<Leader>Lm"] = {
           "<Cmd>messages<CR>",
           desc = "Show Messages",
         },
-        ["<Leader>Lmc"] = {
+        ["<Leader>L-"] = {
           "<Cmd>messages clear<CR>",
           desc = "Clear Messages",
         },
         ["<Leader>L"] = { desc = "Logs" },
-        ["<Leader>Ln"] = { desc = "Logs > Noice" },
-        ["<Leader>Lm"] = { desc = "Logs > Messages" },
+        ["<Leader>xS"] = {
+          function() spell_util.rebuild_spell_binary() end,
+          desc = "Rebuild Spell Binary",
+        },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },

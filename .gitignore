@@ -1,3 +1,6 @@
 undo/
 undo/*
 lua_env/*
+*.spl
+*.bak
+*.swp
