@@ -1,4 +1,19 @@
 return {
+  -- {
+  --   "lrangell/theme-cycler.nvim",
+  --   ---@param opts table
+  --   opts = function(_, opts)
+  --     require("theme-cycler").setup(opts)
+  --
+  --     -- Register keymaps with which-key
+  --     local wk = require("which-key")
+  --     wk.register({
+  --       ["<Leader>tc"] = { "<cmd>CycleTheme<CR>", "Cycle Theme" },
+  --       ["<Leader>tn"] = { "<cmd>CycleThemeNext<CR>", "Next Theme" },
+  --       ["<Leader>tp"] = { "<cmd>CycleThemePrev<CR>", "Previous Theme" },
+  --     }, { mode = "n" })
+  --   end,
+  -- },
   {
     "Verf/deepwhite.nvim",
     lazy = false,
@@ -18,10 +33,6 @@ return {
   { "SebastianZaha/nvim-solar-paper" },
   {
     "nyoom-engineering/oxocarbon.nvim",
-    -- Add in any other configuration;
-    --   event = foo,
-    --   config = bar
-    --   end,
   },
   { "echasnovski/mini.base16", version = false },
 }

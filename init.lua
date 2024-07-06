@@ -1,4 +1,4 @@
-if vim.env.VSCODE then vim.g.vscode = true end
+-- if vim.env.VSCODE then vim.g.vscode = true end
 
 -- This "lua.keymaps"straps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
