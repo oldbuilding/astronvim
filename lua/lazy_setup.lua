@@ -40,9 +40,9 @@ require("lazy").setup({
     },
     config = function() set_environment_vars() end,
   },
-  { import = "lazyvim.plugins.extras.coding.copilot" },
   { import = "community" },
   { import = "plugins" },
+  -- { import = "lazyvim.plugins.extras.coding.copilot" },
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
   install = {
