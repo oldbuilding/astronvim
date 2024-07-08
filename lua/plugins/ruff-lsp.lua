@@ -9,7 +9,9 @@ return {
         fixAll = true,
         organizeImports = true,
         -- Any extra CLI arguments for `ruff` go here.
-        args = {},
+        args = {
+          "--config", "~/.config/ruff/ruff.toml"
+        },
       },
     },
   },
