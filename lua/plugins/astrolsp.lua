@@ -30,6 +30,9 @@ return {
           "typescript",
           "javascript",
           "bash",
+          "yaml",
+          "json",
+          "lua",
           -- "go",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
