@@ -37,3 +37,6 @@ formatter
 getattr
 momentId
 len
+covid
+dataframe
+msg
