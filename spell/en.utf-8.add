@@ -40,3 +40,6 @@ len
 covid
 dataframe
 msg
+shellcheck
+bashrc
+wsl
