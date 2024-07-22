@@ -35,4 +35,10 @@ return {
     "nyoom-engineering/oxocarbon.nvim",
   },
   { "echasnovski/mini.base16", version = false },
+  { "rose-pine/neovim", version = false },
+  { "xero/miasma.nvim", version = false },
+  { "navarasu/onedark.nvim", version = false },
+  { "oxfist/night-owl.nvim", version = false },
+  { "sontungexpt/witch", version = false },
+  { "Th3Whit3Wolf/one-nvim", version = false },
 }
