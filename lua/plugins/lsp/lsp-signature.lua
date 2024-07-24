@@ -7,10 +7,10 @@ M.config = function()
   local lsp_signature = require("lsp_signature")
 
   lsp_signature.setup({
-    hint_enable = false, -- virtual hint enable
+    hint_enable = true, -- virtual hint enable
     hint_prefix = "💡", -- Bulb for parameter, NOTE: for the terminal not support emoji, might crash
     handler_opts = {
-      border = "none", -- double, rounded, single, shadow, none, or a table of borders
+      border = "rounded", -- double, rounded, single, shadow, none, or a table of borders
     },
   })
 end

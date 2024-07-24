@@ -32,9 +32,10 @@ if not pcall(require, "lazy") then
         true,
         {}
     )
-    vim.fn.getchar()
-    vim.cmd.quit()
+  vim.fn.getchar()
+  vim.cmd.quit()
 end
 
 require("lazy_setup")
+require("plugins.lsp")
 -- require "config.polish"
