@@ -10,16 +10,17 @@ local M = {
   event = "LspAttach",
 }
 
-local wk = require("whichkey")
-
 M.config = function()
+  local wk = require("which-key")
   require("lsp_lines").setup({
-    vim.keymap.set(
-      "n",
-      "<leader>l",
-      ":lua require('lsp_lines').toggle()<CR>",
-      { desc = "Toggle lsp_lines", noremap = true, silent = true }
-    ), -- Toggle lsp lines
+    keys = {
+      vim.keymap.set(
+        "n",
+        "<leader>l",
+        ":lua require('lsp_lines').toggle()<CR>",
+        { desc = "Toggle lsp_lines", noremap = true, silent = true }
+      ), -- Toggle lsp lines
+    },
     vim.diagnostic.config({
       virtual_text = false, -- Disable virtual_text since it's redundant due to lsp_lines.
       virtual_lines = { only_current_line = true },
