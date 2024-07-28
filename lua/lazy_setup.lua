@@ -58,6 +58,7 @@ require("lazy").setup({
     },
   },
   colorscheme = "kanagawa-wave",
+  background = "dark",
   ui = { backdrop = 60, border = "rounded" },
   checker = { enabled = true },
   performance = {

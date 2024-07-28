@@ -43,3 +43,8 @@ msg
 shellcheck
 bashrc
 wsl
+noqa
+RUF
+runtime
+ARG
+PLR

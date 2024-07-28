@@ -23,6 +23,7 @@ return {
     spelloptions = "camel",
     autowrite = true,
     autoindent = true,
+    background = "dark",
     cmdheight = 0,
     conceallevel = 3,
     confirm = true,
