@@ -47,6 +47,7 @@ require("lazy").setup({
   -- Configure any other `lazy.nvim` configuration options here
   install = {
     colorscheme = {
+      "night-owl",
       "tokyonight",
       "kangawa",
       "mini.base16",
@@ -57,7 +58,7 @@ require("lazy").setup({
       "rose-pine",
     },
   },
-  colorscheme = "kanagawa-wave",
+  colorscheme = "night-owl", -- "kanagawa-wave",
   ui = { backdrop = 60, border = "rounded" },
   checker = { enabled = true },
   performance = {

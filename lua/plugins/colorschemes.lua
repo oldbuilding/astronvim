@@ -15,6 +15,19 @@ return {
   --   end,
   -- },
   {
+    "oxfist/night-owl.nvim",
+    version = false,
+    config = function(_, _)
+      require("night-owl").setup({
+        bold = true,
+        italics = true,
+        underline = true,
+        undercurl = true,
+        transparent_background = false,
+      })
+    end,
+  },
+  {
     "Verf/deepwhite.nvim",
     lazy = false,
     priority = 1000,
@@ -38,7 +51,6 @@ return {
   { "rose-pine/neovim", version = false },
   { "xero/miasma.nvim", version = false },
   { "navarasu/onedark.nvim", version = false },
-  { "oxfist/night-owl.nvim", version = false },
   { "sontungexpt/witch", version = false },
   { "Th3Whit3Wolf/one-nvim", version = false },
 }
