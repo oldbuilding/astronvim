@@ -3,7 +3,6 @@
 --   return {}
 -- end
 
-
 local transparency_amount = 0 -- 0 opaque to 100 transparent
 local update_time_ms = 300 -- save swap file and trigger CursorHold
 local keymap_sequence_timeout_ms = 400 -- time (ms) to wait for a mapped sequence to complete (default 1000)
@@ -41,6 +40,13 @@ return {
     },
     -- vim options can be configured here
     options = {
+      g = {
+        guifont = { "VictorMonoNerdFontMono", ":h16" },
+        eof = true,
+        fixeof = true,
+        eol = true,
+        fixeol = true,
+      },
       opt = {
         -- vim.opt.<key>
         spell = true, -- sets vim.opt.spell
@@ -49,6 +55,7 @@ return {
         spelloptions = "camel",
         autowrite = true,
         cmdheight = 0,
+        colorcolumn = "123",
         conceallevel = 3,
         confirm = true,
         copyindent = true,
@@ -132,7 +139,6 @@ return {
         wrap = false,
         writebackup = false,
       },
-      g = {},
     },
     -- Mappings can be configured through AstroCore as well.
     -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized

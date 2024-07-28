@@ -30,7 +30,7 @@ M.config = function()
     "lua_ls",
     "pyright",
     "tsserver",
-    "ruff-lsp",
+    "ruff_lsp",
     "nil_ls",
   }
 
