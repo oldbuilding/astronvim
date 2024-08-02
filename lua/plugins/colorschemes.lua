@@ -23,7 +23,8 @@ return {
         italics = true,
         underline = true,
         undercurl = true,
-        transparent_background = false,
+        transparent_background = true,
+        vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = "Blue" }),
       })
     end,
   },
