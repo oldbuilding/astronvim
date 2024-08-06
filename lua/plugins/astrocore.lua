@@ -146,10 +146,18 @@ return {
       -- first key is the mode
       -- second key is the lefthand side of the map
       n = {
+        ["<Leader>o"] = false,
+        ["<Leader>e"] = false,
         -- Jump to previous position with Alt-b
-        ["<M-b>"] = { "<Cmd>normal! <C-o><CR>", desc = "Jump to previous position" },
+        ["<M-h>"] = { "<Cmd>normal! <C-o><CR>", desc = "Jump to previous position" },
         -- Jump to next position with Alt-m
-        ["<M-m>"] = { "<Cmd>normal! <C-i><CR>", desc = "Jump to next position" },
+        ["<M-n>"] = { "<Cmd>normal! <C-i><CR>", desc = "Jump to next position" },
+        --
+        ["<M-t>"] = { desc = "+Neotree" },
+        ["<M-t>b"] = { "<Cmd>Neotree buffers<CR>", desc = "Explorer Buffers" },
+        ["<M-t>e"] = { "<Cmd>Neotree toggle<CR>", desc = "Explorer Toggle" },
+        ["<M-t>g"] = { "<Cmd>Neotree git_status<CR>", desc = "Git Status in Explorer" },
+        ["<M-t>t"] = { "<Cmd>Neotree reveal<CR>", desc = "Explorer Focus (current buffer)" },
         --
         -- disable the default Exit AstroNvim mapping
         ["<Leader>Q"] = false,
