@@ -146,6 +146,11 @@ return {
       -- first key is the mode
       -- second key is the lefthand side of the map
       n = {
+        -- Jump to previous position with Alt-b
+        ["<M-b>"] = { "<Cmd>normal! <C-o><CR>", desc = "Jump to previous position" },
+        -- Jump to next position with Alt-m
+        ["<M-m>"] = { "<Cmd>normal! <C-i><CR>", desc = "Jump to next position" },
+        --
         -- disable the default Exit AstroNvim mapping
         ["<Leader>Q"] = false,
         ["<Leader><M-x>"] = { "<Cmd>confirm qall<CR>", desc = "Exit AstroNvim" },
