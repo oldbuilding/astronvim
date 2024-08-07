@@ -55,7 +55,7 @@ return {
         spelloptions = "camel",
         autowrite = true,
         cmdheight = 0,
-        colorcolumn = "123",
+        colorcolumn = "142",
         conceallevel = 3,
         confirm = true,
         copyindent = true,
@@ -154,9 +154,10 @@ return {
         ["<M-n>"] = { "<Cmd>normal! <C-i><CR>", desc = "Jump to next position" },
         --
         ["<M-t>"] = { desc = "+Neotree" },
-        ["<M-t>b"] = { "<Cmd>Neotree buffers<CR>", desc = "Explorer Buffers" },
+        ["<M-t>b"] = { "<Cmd>Neotree float buffers<CR>", desc = "Explorer Buffers" },
+        ["<M-t>d"] = { "<Cmd>Neotree float document_symbols<CR>", desc = "Document Symbols Explorer" },
         ["<M-t>e"] = { "<Cmd>Neotree toggle<CR>", desc = "Explorer Toggle" },
-        ["<M-t>g"] = { "<Cmd>Neotree git_status<CR>", desc = "Git Status in Explorer" },
+        ["<M-t>g"] = { "<Cmd>Neotree float git_status<CR>", desc = "Git Status Explorer" },
         ["<M-t>t"] = { "<Cmd>Neotree reveal<CR>", desc = "Explorer Focus (current buffer)" },
         --
         -- disable the default Exit AstroNvim mapping
