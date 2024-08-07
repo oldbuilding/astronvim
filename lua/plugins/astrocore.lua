@@ -158,7 +158,9 @@ return {
         ["<M-t>d"] = { "<Cmd>Neotree float document_symbols<CR>", desc = "Document Symbols Explorer" },
         ["<M-t>e"] = { "<Cmd>Neotree toggle<CR>", desc = "Explorer Toggle" },
         ["<M-t>g"] = { "<Cmd>Neotree float git_status<CR>", desc = "Git Status Explorer" },
-        ["<M-t>t"] = { "<Cmd>Neotree reveal<CR>", desc = "Explorer Focus (current buffer)" },
+        ["<M-t><M-t>"] = { "<Cmd>Neotree reveal<CR>", desc = "Explorer Focus (current buffer)" },
+        --
+        ["<Leader><Leader>d"] = { "<Cmd>g/^$/d<CR>", desc = "Delete empty lines" },
         --
         -- disable the default Exit AstroNvim mapping
         ["<Leader>Q"] = false,
