@@ -1,6 +1,5 @@
 return {
   "folke/trouble.nvim",
-  branch = "dev",
   opts = {
     auto_close = false,
     auto_open = true,

@@ -140,14 +140,15 @@ return {
         writebackup = false,
       },
     },
-    -- Mappings can be configured through AstroCore as well.
-    -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
+    -- NOTE: keycodes follow the casing in the vimdocs. For example,
+    -- `<Leader>` must be capitalized
     mappings = {
-      -- first key is the mode
-      -- second key is the lefthand side of the map
       n = {
         ["<Leader>o"] = false,
+        [",o"] = false,
         ["<Leader>e"] = false,
+        [",e"] = false,
+        --
         -- Jump to previous position with Alt-b
         ["<M-h>"] = { "<Cmd>normal! <C-o><CR>", desc = "Jump to previous position" },
         -- Jump to next position with Alt-m
