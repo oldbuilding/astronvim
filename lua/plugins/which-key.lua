@@ -14,7 +14,7 @@ return {
         title_pos = "center",
         zindex = 1000,
         wo = {
-          winblend = 3,
+          winblend = 0,
         },
       },
       layout = {
