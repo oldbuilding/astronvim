@@ -47,6 +47,7 @@ require("lazy").setup({
   -- Configure any other `lazy.nvim` configuration options here
   install = {
     colorscheme = {
+      "falcon",
       "night-owl",
       "tokyonight",
       "kangawa",
@@ -58,7 +59,7 @@ require("lazy").setup({
       "rose-pine",
     },
   },
-  colorscheme = "night-owl",
+  colorscheme = "falcon",
   background = "dark",
   ui = { backdrop = 60, border = "rounded" },
   checker = { enabled = true },

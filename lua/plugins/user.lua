@@ -7,6 +7,7 @@
 return {
   -- require("neoconf").setup(),
 
+  { "junegunn/vim-easy-align", command = "EasyAlign", lazy = true, enabled = true },
   {
     "rcarriga/nvim-notify",
     enabled = false,
