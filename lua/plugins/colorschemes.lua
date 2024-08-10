@@ -15,6 +15,32 @@ return {
   --   end,
   -- },
   {
+
+    "ofirgall/ofirkai.nvim",
+    opts = function()
+      require("ofirkai").setup({
+        theme = "dark_blue", -- Choose theme to use, available themes: 'dark_blue'
+        scheme = require("ofirkai").scheme, -- Option to override scheme
+        custom_hlgroups = {}, -- Option to add/override highlight groups
+        remove_italics = false, -- Option to change all the italics style to none
+      })
+    end,
+  },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = function()
+      require("lackluster").setup({
+        tweak_ui = {
+          disable_undercurl = true, -- set to true if you want underline instead of undercurl
+          enable_end_of_buffer = true, -- set to true to show the end_of_buffer ~ symbols in the gutter
+        },
+        vim.cmd.colorscheme("lackluster"),
+      })
+    end,
+  },
+  {
     "Yazeed1s/oh-lucy.nvim",
     lazy = false,
     priority = 1000,

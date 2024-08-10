@@ -2,14 +2,15 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
+      position = "right",
       win = {
         -- width = 99,
         -- height = 23,
-        row = math.huge,
-        col = 0,
-        border = "single",
+        -- row = math.huge,
+        col = 2,
+        border = "shadow",
         no_overlap = true,
-        padding = { 2, 3 }, -- extra window padding [top/bottom, left/right]
+        padding = { 2, 2 }, -- extra window padding [top/bottom, left/right]
         title = true,
         title_pos = "center",
         zindex = 1000,
@@ -20,9 +21,8 @@ return {
       layout = {
         height = { min = 10, max = 42 }, -- min and max height of the columns
         width = { min = 23, max = 133 }, -- min and max width of the columns
-        spacing = 3, -- spacing between columns
+        spacing = 1, -- spacing between columns
         align = "right", -- align columns left, center or right
-        position = "center",
       },
       plugins = {
         marks = true,
@@ -32,7 +32,7 @@ return {
           suggestions = 20,
         },
       },
-      sort = { "local" },
+      sort = { "alphanum", "group", "case" },
       show_keys = true,
       presets = {
         name = "modern",
