@@ -5,13 +5,13 @@ return {
   config = function(_, _)
     require("cyberdream").setup({
       -- Enable transparent background
-      transparent = false,
+      transparent = true,
 
       -- Enable italics comments
-      italic_comments = false,
+      italic_comments = true,
 
       -- Replace all fillchars with ' ' for the ultimate clean look
-      hide_fillchars = false,
+      hide_fillchars = true,
 
       -- Modern borderless telescope theme
       borderless_telescope = true,
@@ -19,12 +19,16 @@ return {
       -- Set terminal colors used in `:terminal`
       terminal_colors = true,
 
-      -- Use caching to improve performance - WARNING: experimental feature - expect the unexpected!
-      -- Early testing shows a 60-70% improvement in startup time. YMMV. Disables dynamic light/dark theme switching.
+      -- Use caching to improve performance
+      -- - WARNING: experimental feature - expect the unexpected!
+      -- -- Early testing shows a 60-70% improvement in startup time. YMMV.
+      -- -- Disables dynamic light/dark theme switching.
       cache = true, -- generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
 
       theme = {
-        variant = "auto", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+        -- use "light" for the light variant.
+        -- Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+        variant = "auto",
         highlights = {
           -- Highlight groups to override, adding new groups is also possible
           -- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values

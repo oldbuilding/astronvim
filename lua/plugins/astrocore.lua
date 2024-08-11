@@ -181,7 +181,10 @@ return {
         ["<Leader>e"] = false,
         [",e"] = false,
         --
-        ["<Leader>-"] = { "<Cmd>Oil --float<CR>", desc = "Oil - Open parent directory" },
+        --
+        ["<Leader>w"] = { "<Cmd>wall<CR>", desc = "Write all" },
+        --
+        -- ["<Leader>-"] = { "<Cmd>Oil --float<CR>", desc = "Oil - Open parent directory" },
         --
         -- Jump to previous position with Alt-b
         ["<M-h>"] = { "<Cmd>normal! <C-o><CR>", desc = "Jump to previous position" },
