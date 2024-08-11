@@ -3,9 +3,9 @@
 --   return {}
 -- end
 
-local transparency_amount = 0 -- 0 opaque to 100 transparent
+local transparency_amount = 9 -- 0 opaque to 100 transparent
 local update_time_ms = 300 -- save swap file and trigger CursorHold
-local keymap_sequence_timeout_ms = 400 -- time (ms) to wait for a mapped sequence to complete (default 1000)
+local keymap_sequence_timeout_ms = 250 -- time (ms) to wait for a mapped sequence to complete (default 1000)
 local spell_util = require("utils.spell")
 local spellfile_path, spellfile_name = spell_util.get_spell_directory_and_filename()
 
@@ -27,7 +27,10 @@ return {
       autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
       cmp_enabled = true, -- enable completion at start
       autopairs_enabled = true, -- enable autopairs at start
-      diagnostics_mode = 3, -- set the visibility of diagnostics in the UI (0=off, 1=only show in status line, 2=virtual text off 3=all on)
+      -- diagnostics visibility:
+      -- -- 0=off,
+      -- -- 1=only show in status line, r=virtual text off 3=all on
+      diagnostics_mode = 3,
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available requires :PackerSync after changing)
       ui_notifications_enabled = true, -- disable notifications when toggling UI elements
       lsp_handlers_enabled = true,
@@ -62,7 +65,7 @@ return {
         cursorline = true,
         diffopt = "linematch:50",
         dir = "/tmp",
-        directory = "~/.config/" .. os.getenv("NVIM_APPNAME") .. "/swaps/",
+        directory = "~/.cache/" .. os.getenv("NVIM_APPNAME") .. "/swaps/",
         expandtab = true,
         fileencoding = "utf-8",
         foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value,
@@ -73,7 +76,8 @@ return {
         formatoptions = "jcroqlnt",
         grepformat = "%f:%l:%c:%m",
         grepprg = "rg --vimgrep",
-        guifont = "VictorMono NF:h17",
+        guifont = { "VictorMonoNerdFontMono", ":h16" },
+        -- guifont = "VictorMono NF:h17",
         hidden = true,
         history = 10000,
         hlsearch = true,
@@ -133,6 +137,34 @@ return {
         wildmenu = true,
         wildmode = "longest:full,full", -- cli completion mode,
         wildoptions = "pum",
+        wildignore = table.concat({
+          "bin",
+          "obj",
+          ".pie",
+          "__pycache__",
+          "node_modules",
+          -- colors
+          "blue.vim",
+          "darkblue.vim",
+          "delek.vim",
+          "desert.vim",
+          "elflord.vim",
+          "evening.vim",
+          "industry.vim",
+          "koehler.vim",
+          "lunaperche.vim",
+          "morning.vim",
+          "murphy.vim",
+          "pablo.vim",
+          "peachpuff.vim",
+          "ron.vim",
+          "shine.vim",
+          "slate.vim",
+          "sorbet.vim",
+          "torte.vim",
+          "wildcharm.vim",
+          "zellner.vim",
+        }, ","),
         winblend = transparency_amount, -- floating window transparency,
         winminwidth = 10,
         winwidth = 30,

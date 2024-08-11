@@ -4,3 +4,4 @@ lua_env/*
 *.spl
 *.bak
 *.swp
+log
