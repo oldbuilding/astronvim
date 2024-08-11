@@ -3,7 +3,7 @@
 --   return {}
 -- end
 
-local transparency_amount = 9 -- 0 opaque to 100 transparent
+local transparency_amount = 20 -- 0 opaque to 100 transparent
 local update_time_ms = 300 -- save swap file and trigger CursorHold
 local keymap_sequence_timeout_ms = 250 -- time (ms) to wait for a mapped sequence to complete (default 1000)
 local spell_util = require("utils.spell")
@@ -18,6 +18,7 @@ return {
     features = {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
       autopairs = true, -- enable autopairs at start
+      -- autopairs_enabled = true, -- enable autopairs at start
       cmp = true, -- enable completion at start
       -- diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
       highlighturl = true, -- highlight URLs at start
@@ -26,7 +27,6 @@ return {
       mapleader = ",", -- sets vim.g.mapleader
       autoformat_enabled = true, -- enable or disable auto formatting at start (lsp.formatting.format_on_save must be enabled)
       cmp_enabled = true, -- enable completion at start
-      autopairs_enabled = true, -- enable autopairs at start
       -- diagnostics visibility:
       -- -- 0=off,
       -- -- 1=only show in status line, r=virtual text off 3=all on
@@ -58,7 +58,7 @@ return {
         spelloptions = "camel",
         autowrite = true,
         cmdheight = 0,
-        colorcolumn = "142",
+        colorcolumn = "156",
         conceallevel = 3,
         confirm = true,
         copyindent = true,
@@ -126,7 +126,7 @@ return {
         textwidth = 100,
         timeoutlen = keymap_sequence_timeout_ms, -- time (ms) to wait for a mapped sequence to complete (default 1000),
         ttimeoutlen = 50, -- time (ms) to wait for a key code sequence to complete (default 50),
-        undodir = vim.fn.stdpath("config") .. "/undo",
+        undodir = "~/.cache/" .. os.getenv("NVIM_APPNAME") .. "/undo/",
         undofile = true,
         undolevels = 10000,
         undoreload = 10000,
@@ -138,14 +138,15 @@ return {
         wildmode = "longest:full,full", -- cli completion mode,
         wildoptions = "pum",
         wildignore = table.concat({
-          "bin",
-          "obj",
-          ".pie",
-          "__pycache__",
-          "node_modules",
+          -- "bin",
+          -- "obj",
+          -- ".pie",
+          -- "__pycache__",
+          -- "node_modules",
           -- colors
           "blue.vim",
           "darkblue.vim",
+          "default.vim",
           "delek.vim",
           "desert.vim",
           "elflord.vim",
@@ -164,8 +165,9 @@ return {
           "torte.vim",
           "wildcharm.vim",
           "zellner.vim",
+          "vim.vim",
         }, ","),
-        winblend = transparency_amount, -- floating window transparency,
+        winblend = 0, -- (0 == opaque) ; floating window transparency,
         winminwidth = 10,
         winwidth = 30,
         wrap = false,

@@ -1,5 +1,7 @@
+if true then return {} end
 return {
   "stevearc/oil.nvim",
+  disabled = true,
   enabled = false,
   lazy = true,
   dependencies = { "echasnovski/mini.icons" },

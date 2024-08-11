@@ -6,7 +6,7 @@ return {
     style = "day",
     light_style = "day",
     day_brightness = 0.99,
-    transparent = true,
+    transparent = false,
     terminal_colors = false,
     styles = {},
     dim_inactive = true,

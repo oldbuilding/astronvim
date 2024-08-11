@@ -90,7 +90,7 @@ return {
           darker = true, -- Higher contrast text for darker style
         },
         disable = {
-          background = true, -- true: transparent background
+          background = false, -- true: transparent background
           term_colors = false, -- Disable setting the terminal colors
           eob_lines = false, -- Make end-of-buffer lines invisible
         },
