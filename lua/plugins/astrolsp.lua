@@ -26,14 +26,14 @@ return {
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
-          "python",
-          "typescript",
-          "javascript",
           "bash",
-          "yaml",
+          "cs",
+          "javascript",
           "json",
           "lua",
-          -- "go",
+          "python",
+          "typescript",
+          "yaml",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
