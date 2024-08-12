@@ -42,7 +42,7 @@ return {
         winfixheight = true,
         winfixwidth = false,
         winhighlight = "Normal:TroubleNormal,NormalNC:TroubleNormalNC,EndOfBuffer:TroubleNormal",
-        wrap = true,
+        wrap = false,
       },
     }, -- window options for the results window. Can be a split or a floating window.
     -- Window options for the preview window. Can be a split, floating window,
