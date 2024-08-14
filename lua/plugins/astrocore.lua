@@ -138,12 +138,11 @@ return {
         wildmode = "longest:full,full", -- cli completion mode,
         wildoptions = "pum",
         wildignore = table.concat({
-          -- "bin",
-          -- "obj",
-          -- ".pie",
-          -- "__pycache__",
-          -- "node_modules",
-          -- colors
+          "bin",
+          "obj",
+          ".pie",
+          "__pycache__",
+          "node_modules",
           "blue.vim",
           "darkblue.vim",
           "default.vim",
