@@ -23,6 +23,23 @@ return {
         },
       },
     })
-    -- Other LSP servers...
+
+    lspconfig.csharp_ls.setup({
+      filetypes = { "cs", "csproj", "sln" },
+    })
+    lspconfig.omnisharp.setup({
+      filetypes = { "cs", "csproj", "sln" },
+    })
+    --
+    require("lspconfig").yamlls.setup({
+      settings = { yaml = { schemas = {} } },
+      filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
+    })
+    --
+    -- Separate configuration for azure-pipelines-ls
+    --
+    require("lspconfig").azure_pipelines_ls.setup({
+      filetypes = { "yaml" },
+    })
   end,
 }

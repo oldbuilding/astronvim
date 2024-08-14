@@ -15,7 +15,7 @@ return -- Using lazy.nvim
       background = true, -- for virtual text
     },
   },
-  config = function()
+  config = function(_, opts)
     require("bamboo").setup(opts)
     require("bamboo").load()
   end,

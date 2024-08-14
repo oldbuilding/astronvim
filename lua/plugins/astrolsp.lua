@@ -28,6 +28,9 @@ return {
         allow_filetypes = { -- enable format on save for specified filetypes only
           "bash",
           "cs",
+          "csproj",
+          "sln",
+          "xml",
           "javascript",
           "json",
           "lua",

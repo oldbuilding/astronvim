@@ -79,7 +79,8 @@ return {
   {
     "windwp/nvim-autopairs",
     config = function(plugin, opts)
-      require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts) -- include the default astronvim config that calls the setup call
+      -- include the default astronvim config that calls the setup call
+      require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
       -- add more custom autopairs configuration such as custom rules
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")
