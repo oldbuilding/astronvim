@@ -24,13 +24,6 @@ return {
       },
     })
 
-    lspconfig.csharp_ls.setup({
-      filetypes = { "cs", "csproj", "sln" },
-    })
-    lspconfig.omnisharp.setup({
-      filetypes = { "cs", "csproj", "sln" },
-    })
-    --
     require("lspconfig").yamlls.setup({
       settings = { yaml = { schemas = {} } },
       filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
@@ -38,8 +31,24 @@ return {
     --
     -- Separate configuration for azure-pipelines-ls
     --
-    require("lspconfig").azure_pipelines_ls.setup({
+    lspconfig.azure_pipelines_ls.setup({
       filetypes = { "yaml" },
     })
+
+    lspconfig.omnisharp.setup({
+      cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+      filetypes = { "cs", "csproj", "sln" },
+      -- root_dir = lspconfig.util.root_pattern(".git", "*.sln"),
+      -- capabilities = require("astronvim.utils.lsp").capabilities(),
+      -- on_attach = require("astronvim.utils.lsp").on_attach(),
+    })
+
+    lspconfig.csharp_ls.setup({
+      filetypes = { "cs", "csproj", "sln" },
+      -- root_dir = lspconfig.util.root_pattern(".git", "*.sln"),
+      -- capabilities = require("astronvim.utils.lsp").capabilities(),
+      -- on_attach = require("astronvim.utils.lsp").on_attach(),
+    })
+
   end,
 }
