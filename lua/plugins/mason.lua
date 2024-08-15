@@ -10,7 +10,6 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         -- "awk_ls",
         "bashls",
-        "csharp_ls",
         -- "clangd",
         -- "dockerls",
         -- "grammarly",
@@ -43,8 +42,8 @@ return {
         "commitlint",
         -- "cppcheck",
         -- "cpplint",
-        "csharp_ls",
         -- "csharpier",
+        "csharp_ls",
         "diagnostic-ls",
         "editorconfig-checker",
         "fixjson",
