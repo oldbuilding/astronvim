@@ -1,7 +1,7 @@
 local M = {}
 
 M.get_keymaps = function()
-  local spell_util = require("utils.spell")
+local spell_util = require("utils.spell")
   -- NOTE keycodes follow the casing in the vimdocs.
   -- For example,
   -- `<Leader>` must be capitalized
