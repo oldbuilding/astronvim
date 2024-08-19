@@ -57,24 +57,24 @@ return {
       factory = helpers.formatter_factory,
     })
 
-    local luacheck_diagnostic = helpers.make_builtin({
-      name = "luacheck",
-      method = methods.internal.DIAGNOSTICS,
-      filetypes = { "lua" },
-      generator_opts = {
-        command = paths.get_mason_bin() .. "/luacheck",
-        args = { "--formatter", "plain", "--codes", "--ranges", "--no-color", "-" },
-        to_stdin = true,
-        from_stderr = false,
-        format = "line",
-        on_output = helpers.diagnostics.from_pattern(
-          [[(%d+):(%d+)-(%d+): %(([^%)]*)%) (.*)]],
-          { "row", "col", "end_col", "code", "message" },
-          { severities = { ["W"] = helpers.diagnostics.severities.warning, ["E"] = helpers.diagnostics.severities.error } }
-        ),
-      },
-      factory = helpers.generator_factory,
-    })
+    -- local luacheck_diagnostic = helpers.make_builtin({
+    --   name = "luacheck",
+    --   method = methods.internal.DIAGNOSTICS,
+    --   filetypes = { "lua" },
+    --   generator_opts = {
+    --     command = paths.get_mason_bin() .. "/luacheck",
+    --     args = { "--formatter", "plain", "--codes", "--ranges", "--no-color", "-" },
+    --     to_stdin = true,
+    --     from_stderr = false,
+    --     format = "line",
+    --     on_output = helpers.diagnostics.from_pattern(
+    --       [[(%d+):(%d+)-(%d+): %(([^%)]*)%) (.*)]],
+    --       { "row", "col", "end_col", "code", "message" },
+    --       { severities = { ["W"] = helpers.diagnostics.severities.warning, ["E"] = helpers.diagnostics.severities.error, } }
+    --     ),
+    --   },
+    --   factory = helpers.generator_factory,
+    -- })
 
     local fixjson_formatter = helpers.make_builtin({
       name = "fixjson",
@@ -122,7 +122,7 @@ return {
         --
         quick_lint_js,
         ruff_linter,
-        luacheck_diagnostic,
+        -- luacheck_diagnostic,
 
         -- builtin sources --
         --

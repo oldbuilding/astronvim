@@ -1,25 +1,26 @@
 return {
   "folke/trouble.nvim",
   cmd = "Trouble",
+  enable = false,
   opts = {
     auto_close = true, -- auto close when there are no items
     auto_open = false, -- auto open when there are items
     auto_preview = false, -- automatically open preview when on an item
     auto_refresh = true, -- auto refresh when open
     auto_jump = true, -- auto jump to the item when there's only one
-    focus = false, -- Focus the window when opened
+    focus = true, -- Focus the window when opened
     restore = true, -- restores the last location in the list when opening
     follow = true, -- Follow the current item
     indent_guides = true, -- show indent guides
-    max_items = 200, -- limit number of items that can be displayed per section
+    max_items = 100, -- limit number of items that can be displayed per section
     multiline = true, -- render multi-line messages
     pinned = false, -- When pinned, the opened trouble window will be bound to the current buffer
-    warn_no_results = true, -- show a warning when there are no results
+    warn_no_results = false, -- show a warning when there are no results
     open_no_results = false, -- open the trouble window when there are no results
     relative = "cursor",
     win = {
       type = "split",
-      position = "right",
+      position = "bottom",
       padding = { top = 1, left = 1 },
       bo = {
         bufhidden = "wipe",
@@ -49,14 +50,15 @@ return {
     -- or `main` to show the preview in the main editor window.
     preview = {
       -- main, split, or float
-      type = "main",
+      type = "float",
       -- when a buffer is not yet loaded, the preview window will be created
       -- in a scratch buffer with only syntax highlighting enabled.
       -- Set to false, if you want the preview to always be a real loaded buffer.
       scratch = true,
       relative = "cursor",
-      auto_open = false, -- auto open when there are items
-      auto_preview = false, -- automatically open preview when on an item
+      auto_open = false,
+      auto_preview = false,
+      auto_close = true,
     },
     -- Throttle/Debounce settings. Should usually not be changed.
     throttle = {
@@ -127,65 +129,73 @@ return {
     modes = {
       diagnostics = {
         desc = "Diagnostics",
-        auto_open = false, -- auto open when there are items
-        auto_preview = false, -- automatically open preview when on an item
-        focus = false,
-        -- win = {
-        --   wo = { winfixheight = true, winfixwidth = true },
-        -- },
+        auto_open = false,
+        auto_close = true,
+        auto_preview = false,
+        focus = true,
+        win = {
+          type = "split",
+          position = "bottom",
+        },
       },
       cascade = {
         -- This mode shows only the most severe diagnostics.
         -- Once those are resolved, less severe diagnostics will be shown.
         mode = "diagnostics", -- inherit from diagnostics mode
-        auto_open = true, -- auto open when there are items
-        auto_preview = false, -- automatically open preview when on an item
-        filter = function(items)
-          local severity = vim.diagnostic.severity.HINT
-          for _, item in ipairs(items) do
-            severity = math.min(severity, item.severity)
-          end
-          return vim.tbl_filter(function(item) return item.severity == severity end, items)
-        end,
+        auto_open = false,
+        auto_preview = false,
+        auto_close = true,
+        focus = true,
+        filter = {
+          any = {
+            buf = 0,
+            {
+              function(items)
+                local severity = vim.diagnostic.severity.HINT
+                for _, item in ipairs(items) do
+                  severity = math.min(severity, item.severity)
+                end
+                return vim.tbl_filter(function(item) return item.severity == severity end, items)
+              end,
+            },
+          },
+        },
         win = {
           type = "split",
           position = "bottom",
-          padding = { top = 1, left = 1 },
-          bo = {
-            bufhidden = "wipe",
-            filetype = "Trouble",
-            buftype = "nofile",
-          },
-          wo = {
-            cursorcolumn = false,
-            cursorline = true,
-            cursorlineopt = "both",
-            fillchars = "eob: ",
-            list = true,
-            number = true,
-            relativenumber = true,
-            signcolumn = "no",
-            spell = false,
-            winbar = "",
-            winblend = 0,
-            statuscolumn = "",
-            winfixheight = false,
-            winfixwidth = false,
-            winhighlight = "Normal:TroubleNormal,NormalNC:TroubleNormalNC,EndOfBuffer:TroubleNormal",
-            wrap = false,
-          },
-        }, -- window options for the results window. Can be a split or a floating window.
+        },
       },
-      -- or override like in the example below
+      buffer_and_all_errors = {
+        mode = "diagnostics", -- inherit from diagnostics mode
+        auto_open = false,
+        auto_preview = false,
+        auto_close = true,
+        focus = true,
+        filter = {
+          any = {
+            buf = 0, {
+              severity = vim.diagnostic.severity.ERROR,
+              function(item)
+                -- limit items to the current project
+                return item.filename:find((vim.loop or vim.uv).cwd(), 1, true)
+              end,
+            },
+          },
+        },
+        win = {
+          type = "split",
+          position = "right",
+        },
+      },
       lsp_references = {
         -- some modes are configurable, see the source code for more details
         auto_open = false, -- auto open when there are items
         auto_preview = false, -- automatically open preview when on an item
+        auto_close = true,
+        focus = false,
         position = "bottom",
         type = "split",
-        params = {
-          include_declaration = true,
-        },
+        params = { include_declaration = true, },
       },
       -- The LSP base mode for:
       -- * lsp_definitions, lsp_references, lsp_implementations
@@ -193,8 +203,10 @@ return {
       lsp_base = {
         auto_open = false, -- auto open when there are items
         auto_preview = false, -- automatically open preview when on an item
-        position = "right",
+        auto_close = true,
+        focus = false,
         type = "split",
+        position = "bottom",
         params = {
           -- don't include the current location in the results
           include_current = false,
@@ -204,20 +216,12 @@ return {
       symbols = {
         desc = "Symbols",
         mode = "lsp_document_symbols",
-        auto_open = true, -- auto open when there are items
-        auto_preview = false, -- automatically open preview when on an item
-        focus = false,
+        auto_open = false,
+        auto_preview = false,
+        auto_close = true,
+        focus = true,
         position = "right",
         type = "split",
-        padding = { top = 1, left = 1 },
-        bo = {
-          bufhidden = "wipe",
-          filetype = "Trouble",
-          buftype = "nofile",
-        },
-        win = {
-          wo = { winfixheight = false, winfixwidth = true },
-        },
         filter = {
           -- remove Package since lua_ls uses it for control flow structures
           ["not"] = { ft = "lua", kind = "Package" },

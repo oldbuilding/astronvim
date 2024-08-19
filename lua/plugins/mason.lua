@@ -7,6 +7,8 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.automatic_installation = true
+      opts.automatic_setup = true
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         -- "awk_ls",
         "bashls",
@@ -54,6 +56,7 @@ return {
         "ruff",
         -- "shfmt",
         "stylua",
+        "selene",
         "typescript-language-server",
         "yaml-language-server",
         "yamlfix",
@@ -73,6 +76,8 @@ return {
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
+      opts.automatic_installation = true
+      opts.automatic_setup = true
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "bash-debug-adapter",
         "debugpy",
