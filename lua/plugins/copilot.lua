@@ -2,6 +2,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     lazy = false,
+    enable = true,
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
@@ -43,6 +44,11 @@ return {
         },
       },
     },
-    config = function(_, opts) require("copilot").setup(opts) end,
+    config = function(_, opts)
+      require("copilot").setup(opts)
+      vim.cmd [[
+        autocmd BufEnter * :Copilot enable
+      ]]
+    end,
   },
 }
