@@ -8,13 +8,24 @@ local M = {
   },
 }
 
+local explicit_exclusions = {
+  "basedpyright", "pylsp",
+}
+
 M.config = function()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   local on_attach = function(client, bufnr)
+    if require("utils.objects").contains(explicit_exclusions, client.name) then
+      client.stop()
+      require("noice").notify("Excluded LSP: " .. client.name, vim.log.levels.INFO)
+      return
+    end
+
     local bufopts = { noremap = true, silent = true, buffer = 0 }
+
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -27,10 +38,10 @@ M.config = function()
   end
 
   local servers = {
+    "bashls",
     "lua_ls",
-    "pyright",
     "tsserver",
-    "ruff_lsp",
+    "ruff",
     "nil_ls",
   }
 

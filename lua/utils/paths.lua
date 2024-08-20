@@ -8,7 +8,6 @@ end
 
 function M.find_project_root()
   -- Function finds the nearest project root by locating the .git directory
-  local Path = require("plenary.path")
   local cwd = vim.fn.getcwd()
   local current_path = Path:new(cwd)
 

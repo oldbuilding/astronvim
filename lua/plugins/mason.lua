@@ -10,23 +10,12 @@ return {
       opts.automatic_installation = true
       opts.automatic_setup = true
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "awk_ls",
         "bashls",
         "jsonls",
         "lua_ls",
         "omnisharp",
-        "pylsp",
-        "pyright",
         "ruff",
-        "ruff_lsp",
         "tailwindcss",
-        -- "clangd",
-        -- "dockerls",
-        -- "eslint-lsp",
-        -- "grammarly",
-        -- "html",
-        -- "marksman",
-        -- add more arguments for adding more language servers
       })
     end,
   },
@@ -41,7 +30,6 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "azure-pipelines-ls",
         "beautysh",
-        -- "codespell",
         "commitlint",
         "csharp_ls",
         "diagnostic-ls",
@@ -51,23 +39,14 @@ return {
         "json-lsp",
         "jsonlint",
         "prettier",
-        "pylint",
         "quick-lint-js",
         "ruff",
-        -- "shfmt",
         "stylua",
         "selene",
         "typescript-language-server",
         "yaml-language-server",
         "yamlfix",
         "yamllint",
-        -- "clang-format",
-        -- "cppcheck",
-        -- "cpplint",
-        -- "csharpier",
-        -- "sqlfmt",
-        -- "sqlls",
-        -- add more arguments for adding more null-ls sources
       })
     end,
   },
@@ -84,9 +63,6 @@ return {
         "js-debug-adapter",
         "netcoredbg",
         "node-debug2-adapter",
-        "python",
-        -- "cpptools",
-        -- add more arguments for adding more debuggers
       })
     end,
   },

@@ -321,26 +321,26 @@ return {
       desc = "All Diagnostics",
     },
     {
-      "<Leader>xdc",
-      "<Cmd>Trouble cascade " ..
+      "<Leader>xdd",
+      "<Cmd>Trouble buffer_and_all_errors " ..
         "win.wo.winfixwidth=true<CR>",
-      desc = "Cascade Diagnostics",
+      desc = "Buffer+All Errors Diagnostics",
     },
     {
-      "<Leader>xdf",
+      "<Leader>xdD",
       "<Cmd>Trouble focus=true " ..
         "win.wo.winfixwidth=true<CR>",
       desc = "Focus on Diagnostics",
     },
     {
       "<Leader>xdp",
-      "<Cmd>Trouble cascade prev " ..
+      "<Cmd>Trouble buffer_and_all_errors prev " ..
         "win.wo.winfixwidth=true<CR>",
       desc = "Prev Diagnostic",
     },
     {
       "<Leader>xdn",
-      "<Cmd>Trouble cascade next " ..
+      "<Cmd>Trouble buffer_and_all_errors next " ..
         "win.wo.winfixwidth=true " ..
         "auto_close=true " ..
         "focus=true<CR>",

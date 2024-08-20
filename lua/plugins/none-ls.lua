@@ -7,42 +7,49 @@ return {
     local methods = require("null-ls.methods")
     local paths = require("utils.paths")
 
-    local quick_lint_js = helpers.make_builtin({
-      name = "quick-lint-js",
-      method = methods.internal.DIAGNOSTICS,
-      filetypes = { "javascript", "typescript" },
-      generator_opts = {
-        command = paths.get_mason_bin() .. "/quick-lint-js",
-        args = { "--stdin", "--stdin-filename", "$FILENAME" },
-        to_stdin = true,
-        format = "line",
-        on_output = helpers.diagnostics.from_pattern(
-          [[(.*):(%d+):(%d+): (.*)]],
-          { "severity", "row", "col", "message" },
-          { severities = { ["error"] = 1, ["warning"] = 2 } }
-        ),
-      },
-      factory = helpers.generator_factory,
-    })
+    -- local quick_lint_js = helpers.make_builtin({
+    --   name = "quick-lint-js",
+    --   method = methods.internal.DIAGNOSTICS,
+    --   filetypes = { "javascript", "typescript" },
+    --   generator_opts = {
+    --     command = paths.get_mason_bin() .. "/quick-lint-js",
+    --     args = { "--stdin", "--stdin-filename", "$FILENAME" },
+    --     to_stdin = true,
+    --     format = "line",
+    --     on_output = helpers.diagnostics.from_pattern(
+    --       [[(.*):(%d+):(%d+): (.*)]],
+    --       { "severity", "row", "col", "message" },
+    --       { severities = { ["error"] = 1, ["warning"] = 2 } }
+    --     ),
+    --   },
+    --   factory = helpers.generator_factory,
+    -- })
 
-    local ruff_linter = helpers.make_builtin({
-      name = "ruff",
-      method = methods.internal.DIAGNOSTICS,
-      filetypes = { "python" },
-      generator_opts = {
-        command = paths.get_mason_bin() .. "/ruff",
-        args = { "--stdin-filename", "$FILENAME", "--format", "json", "-" },
-        to_stdin = true,
-        format = "json",
-        on_output = helpers.diagnostics.from_json({
-          severities = {
-            ["E"] = helpers.diagnostics.severities.error,
-            ["W"] = helpers.diagnostics.severities.warning,
-            ["F"] = helpers.diagnostics.severities.information,
-          },
-        }),
-      },
-      factory = helpers.generator_factory,
+    -- local ruff_linter = helpers.make_builtin({
+    --   name = "ruff",
+    --   method = methods.internal.DIAGNOSTICS,
+    --   filetypes = { "python" },
+    --   generator_opts = {
+    --     command = paths.get_mason_bin() .. "/ruff",
+    --     args = { "check", "--stdin-filename", "$FILENAME", "--format", "json", "-" },
+    --     to_stdin = true,
+    --     format = "json",
+    --     on_output = helpers.diagnostics.from_json({
+    --       severities = {
+    --         ["E"] = helpers.diagnostics.severities.error,
+    --         ["W"] = helpers.diagnostics.severities.warning,
+    --         ["F"] = helpers.diagnostics.severities.information,
+    --       },
+    --     }),
+    --   },
+    --   factory = helpers.generator_factory,
+    -- })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.py",
+      callback = function()
+        vim.lsp.buf.format({ async = true })
+      end,
     })
 
     local ruff_formatter = helpers.make_builtin({
@@ -51,7 +58,7 @@ return {
       filetypes = { "python" },
       generator_opts = {
           command = "ruff",
-          args = { "--fix", "--stdin-filename", "$FILENAME", "-" },
+          args = { "check", "--fix", "--stdin-filename", "$FILENAME", "-" },
           to_stdin = true,
       },
       factory = helpers.formatter_factory,
@@ -88,40 +95,39 @@ return {
       factory = helpers.formatter_factory,
     })
 
-    local eslint_d_formatter = helpers.make_builtin({
-      name = "eslint_d",
-      method = methods.internal.FORMATTING,
-      filetypes = { "javascript", "typescript" },
-      generator_opts = {
-        command = paths.get_mason_bin() .. "/eslint_d",
-        args = { "--stdin", "--stdin-filename", "$FILENAME", "--fix-to-stdout" },
-        to_stdin = true,
-      },
-      factory = helpers.formatter_factory,
-    })
-
-    local ts_standard_formatter = require("null-ls.helpers").make_builtin({
-      name = "ts-standard",
-      method = require("null-ls.methods").internal.FORMATTING,
-      filetypes = { "typescript" },
-      generator_opts = {
-          command = "ts-standard",
-          args = { "--fix", "--stdin", "--stdin-filename", "$FILENAME" },
-          to_stdin = true,
-      },
-      factory = require("null-ls.helpers").formatter_factory,
-    })
+    -- local eslint_d_formatter = helpers.make_builtin({
+    --   name = "eslint_d",
+    --   method = methods.internal.FORMATTING,
+    --   filetypes = { "javascript", "typescript" },
+    --  generator_opts = {
+    --     command = paths.get_mason_bin() .. "/eslint_d",
+    --     args = { "--stdin", "--stdin-filename", "$FILENAME", "--fix-to-stdout" },
+    --     to_stdin = true,
+    --   },
+    --   factory = helpers.formatter_factory,
+    -- })
+    --
+    -- local ts_standard_formatter = require("null-ls.helpers").make_builtin({
+    --   name = "ts-standard",
+    --   method = require("null-ls.methods").internal.FORMATTING,
+    --   filetypes = { "typescript" },
+    --   generator_opts = {
+    --       command = "ts-standard",
+    --       args = { "--fix", "--stdin", "--stdin-filename", "$FILENAME" },
+    --       to_stdin = true,
+    --   },
+    --   factory = require("null-ls.helpers").formatter_factory,
+    -- })
 
     null_ls.setup({
       sources = {
-
         --
         -- DIAGNOSTICS / LINTERS
         --
         -- custom sources --
         --
-        quick_lint_js,
-        ruff_linter,
+        -- quick_lint_js,
+        -- ruff_linter,
         -- luacheck_diagnostic,
 
         -- builtin sources --
@@ -142,17 +148,15 @@ return {
         null_ls.builtins.diagnostics.selene,
 
         null_ls.builtins.diagnostics.yamllint,
-
+        --
         --
         -- FORMATTERS
         --
-        --
         -- custom sources --
-        --
-        eslint_d_formatter,
+        -- eslint_d_formatter,
         fixjson_formatter,
         ruff_formatter,
-        ts_standard_formatter,
+        -- ts_standard_formatter,
         --
         -- builtin sources --
         --
@@ -167,7 +171,7 @@ return {
             "--double-quotes",
             "--prose-wrap",
             "always",
-         },
+          },
           filetypes = { "yaml", "json" },
         }),
 
