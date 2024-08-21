@@ -1,7 +1,6 @@
 return {
   "folke/trouble.nvim",
   cmd = "Trouble",
-  enable = false,
   opts = {
     auto_close = true, -- auto close when there are no items
     auto_open = false, -- auto open when there are items

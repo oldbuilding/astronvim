@@ -3,7 +3,7 @@ if true then return {} end
 ---@type LazySpec
 return {
   "astral-sh/ruff-lsp",
-  enable = false,
+  enabled = false,
   -- Configure `ruff-lsp`.
   -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
   -- For the default config, along with instructions on how to customize the settings
