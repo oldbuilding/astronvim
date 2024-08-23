@@ -69,11 +69,6 @@ M.config = function()
       },
     })
   end
-
-  --https://github.com/aca/emmet-ls
-  -- lspconfig.emmet_ls.setup({
-  --   filetypes = { "html", "css", "template" },
-  -- })
 end
 
 M.toggle_inlay_hints = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end

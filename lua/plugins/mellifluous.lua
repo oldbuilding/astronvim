@@ -32,9 +32,9 @@ return {
         enabled = true,
         floating_windows = false,
         telescope = false,
-        file_tree = false,
+        file_tree = true,
         cursor_line = false,
-        status_line = false,
+        status_line = true,
       },
       flat_background = {
         line_numbers = false,

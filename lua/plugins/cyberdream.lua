@@ -28,7 +28,7 @@ return {
       theme = {
         -- use "light" for the light variant.
         -- Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
-        variant = "auto",
+        variant = "light",
         highlights = {
           -- Highlight groups to override, adding new groups is also possible
           -- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
@@ -78,8 +78,8 @@ return {
         markview = false,
         mini = true,
         noice = true,
-        notify = true,
-        rainbow_delimiters = false,
+        notify = false,
+        rainbow_delimiters = true,
         telescope = true,
         treesitter = true,
         treesittercontext = true,

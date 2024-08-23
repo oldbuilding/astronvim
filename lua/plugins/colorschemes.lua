@@ -17,6 +17,8 @@ return {
   {
 
     "ofirgall/ofirkai.nvim",
+    lazy = false,
+    priority = 1000,
     opts = function()
       require("ofirkai").setup({
         theme = "dark_blue", -- Choose theme to use, available themes: 'dark_blue'
@@ -49,6 +51,12 @@ return {
     "fenetikm/falcon",
     lazy = false,
     priority = 1000,
+    falcon_background = 0,
+    falcon_inactive = 1,
+    -- config = function(_, _)
+    --   require("falcon").setup({
+    --   })
+    -- end,
   },
   {
     "oxfist/night-owl.nvim",
@@ -95,8 +103,19 @@ return {
           eob_lines = false, -- Make end-of-buffer lines invisible
         },
         style = {
-          name = "middlenight_blue", -- Theme style name (moonlight, earliestsummer, etc.)
-          -- " other themes: dracula, oceanic, dracula_blood, 'deep ocean', darker, palenight, monokai, mariana, emerald, middlenight_blue
+          name = "middlenight_blue", -- other theme styles:
+          -- -- earliestsummer
+          -- -- moonlight
+          -- -- dracula
+          -- -- oceanic
+          -- -- 'dracula_blood'
+          -- -- 'deep ocean'
+          -- -- darker
+          -- -- palenight
+          -- -- monokai
+          -- -- mariana
+          -- -- emerald
+          -- -- 'middlenight_blue'
           disable = {}, -- a list of styles to disable, e.g. {'bold', 'underline'}
           fix = true,
           darker_contrast = true, -- More contrast for darker style

@@ -1,13 +1,35 @@
 return {
   "neovim/nvim-lspconfig",
+  event = {"BufReadPre", "BufNewFile"},
   dependencies = {
-    "folke/neoconf.nvim",
+    { "folke/neoconf.nvim", opts = {}},
   },
   config = function()
     -- require("neoconf").setup() -- Ensure neoconf is setup here if needed
     local lspconfig = require("lspconfig")
 
-    lspconfig.ruff.setup({
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+    local on_attach = function(client, bufnr)
+      -- format on save
+      if client.server_capabilities.document_formatting then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("Format", {
+          clear = true,
+        }),
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format()
+        end,
+      })
+      end
+    end
+
+
+    lspconfig.ruff_lsp.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings_ = {
         linelength = 180,
         ruff = {
@@ -35,6 +57,8 @@ return {
 
     lspconfig.pylsp.setup({
       enabled = false,
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         pylsp = {
           plugins = {
@@ -74,6 +98,8 @@ return {
 
     lspconfig.basedpyright.setup({
       enabled = false,
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         basedpyright = {
           -- Using Ruff's import organizer
@@ -89,6 +115,8 @@ return {
     })
 
     lspconfig.pyright.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         pyright = {
           -- Using Ruff's import organizer
@@ -104,6 +132,8 @@ return {
     })
 
     lspconfig.editorconfig_checker.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         python = {
             format = { enabled = false, },
@@ -113,6 +143,8 @@ return {
     })
 
     lspconfig.lua_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         Lua = {
           format = { enable = false },
@@ -121,6 +153,8 @@ return {
     })
 
     lspconfig.yamlls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       settings = { yaml = { schemas = {} } },
       filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
     })
@@ -128,22 +162,22 @@ return {
     -- Separate configuration for azure-pipelines-ls
     --
     lspconfig.azure_pipelines_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       filetypes = { "yaml" },
     })
 
     lspconfig.omnisharp.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
       filetypes = { "cs", "csproj", "sln" },
-      -- root_dir = lspconfig.util.root_pattern(".git", "*.sln"),
-      -- capabilities = require("astronvim.utils.lsp").capabilities(),
-      -- on_attach = require("astronvim.utils.lsp").on_attach(),
     })
 
     lspconfig.csharp_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
       filetypes = { "cs", "csproj", "sln" },
-      -- root_dir = lspconfig.util.root_pattern(".git", "*.sln"),
-      -- capabilities = require("astronvim.utils.lsp").capabilities(),
-      -- on_attach = require("astronvim.utils.lsp").on_attach(),
     })
 
   end,
