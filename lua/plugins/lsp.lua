@@ -7,13 +7,109 @@ return {
     -- require("neoconf").setup() -- Ensure neoconf is setup here if needed
     local lspconfig = require("lspconfig")
 
-    lspconfig.ruff_lsp.setup({
-      on_attach = function(_, bufnr)
-        local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-        buf_set_option("shiftwidth", 4)
-        buf_set_option("tabstop", 4)
-        buf_set_option("expandtab", true)
-      end,
+    lspconfig.ruff.setup({
+      settings_ = {
+        linelength = 180,
+        ruff = {
+          format = {
+            enable = true,
+          },
+          lint = { select = { "ALL" }},
+          fix = { select = { "ALL" }},
+        },
+      },
+      init_options = {
+        settings_ = {
+          linelength = 180,
+          editorconfig_checker = nil,
+          ruff = {
+            format = {
+              enable = true,
+            },
+            lint = { select = { "ALL" }},
+            fix = { select = { "ALL" }},
+          },
+        }
+      },
+    })
+
+    lspconfig.pylsp.setup({
+      enabled = false,
+      settings = {
+        pylsp = {
+          plugins = {
+            editorconfig = { enabled = false },
+            basedpyright = { enabled = false },
+            ruff = { enabled = true },
+            pycodestyle = { enabled = false },
+            pydocstyle = { enabled = false },
+            pylint = { enabled = false },
+            flake8 = { enabled = false },
+            mypy = { enabled = false },
+            yapf = { enabled = false },
+            isort = { enabled = false },
+            black = { enabled = false },
+            jedi = { enabled = false },
+            mccabe = { enabled = false },
+            pyflakes = { enabled = false },
+            bandit = { enabled = false },
+            radon = { enabled = false },
+            rope = { enabled = false },
+            pyls_isort = { enabled = false },
+            pyls_black = { enabled = false },
+            pyls_mypy = { enabled = false },
+            pyls_flake8 = { enabled = false },
+            pyls_pycodestyle = { enabled = false },
+            pyls_pydocstyle = { enabled = false },
+            pyls_mccabe = { enabled = false },
+            pyls_pyflakes = { enabled = false },
+            pyls_bandit = { enabled = false },
+            pyls_radon = { enabled = false },
+            pyls_rope = { enabled = false },
+            pyls_jedi = { enabled = false },
+          },
+        }
+      }
+    })
+
+    lspconfig.basedpyright.setup({
+      enabled = false,
+      settings = {
+        basedpyright = {
+          -- Using Ruff's import organizer
+          disableOrganizeImports = true,
+        },
+        python = {
+          analysis = {
+            -- Ignore all files for analysis to exclusively use Ruff for linting
+            ignore = { '*' },
+          },
+        },
+      },
+    })
+
+    lspconfig.pyright.setup({
+      settings = {
+        pyright = {
+          -- Using Ruff's import organizer
+          disableOrganizeImports = true,
+        },
+        python = {
+          analysis = {
+            -- Ignore all files for analysis to exclusively use Ruff for linting
+            ignore = { '*' },
+          },
+        },
+      },
+    })
+
+    lspconfig.editorconfig_checker.setup({
+      settings = {
+        python = {
+            format = { enabled = false, },
+            lint = { enabled = false, },
+        }
+      }
     })
 
     lspconfig.lua_ls.setup({
@@ -24,7 +120,7 @@ return {
       },
     })
 
-    require("lspconfig").yamlls.setup({
+    lspconfig.yamlls.setup({
       settings = { yaml = { schemas = {} } },
       filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
     })

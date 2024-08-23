@@ -8,24 +8,11 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "awk_ls",
         "bashls",
-        -- "clangd",
-        -- "dockerls",
-        -- "grammarly",
-        -- "html",
         "jsonls",
         "lua_ls",
-        -- "marksman",
-        "omnisharp",
-        "pylsp",
         "pyright",
         "ruff",
-        "ruff_lsp",
-        "tailwindcss",
-        -- "eslint-lsp",
-        -- "eslint_d",
-        -- add more arguments for adding more language servers
       })
     end,
   },
@@ -36,34 +23,18 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        "azure-pipelines-ls",
-        -- "clang-format",
-        -- "codespell",
-        "commitlint",
-        -- "cppcheck",
-        -- "cpplint",
-        -- "csharpier",
         "csharp_ls",
         "diagnostic-ls",
         "editorconfig-checker",
         "fixjson",
-        "js-debug-adapter",
         "json-lsp",
         "jsonlint",
-        "prettier",
-        -- "proselint",
-        "pylint",
-        "quick-lint-js",
         "ruff",
         "shfmt",
-        -- "sqlfmt",
-        -- "sqlls",
         "stylua",
-        "typescript-language-server",
         "yaml-language-server",
         "yamlfix",
         "yamllint",
-        -- add more arguments for adding more null-ls sources
       })
     end,
   },
@@ -74,13 +45,7 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "bash-debug-adapter",
-        -- "cpptools",
         "debugpy",
-        "js-debug-adapter",
-        "netcoredbg",
-        "node-debug2-adapter",
-        "python",
-        -- add more arguments for adding more debuggers
       })
     end,
   },
