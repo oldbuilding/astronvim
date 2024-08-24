@@ -10,7 +10,10 @@ return {
         bg_contrast = "hard", -- options: "soft", "medium", "hard"
       },
       color_set = "mellifluous",
-      styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
+      styles = {
+        -- see :h attr-list for options.
+        -- set {} for NONE,
+        -- { option = true } for option
         comments = { italic = true },
         conditionals = {},
         folds = {},

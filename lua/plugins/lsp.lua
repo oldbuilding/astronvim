@@ -243,6 +243,11 @@ return {
         },
         python = {
           analysis = {
+            autoImportCompletions = true,
+            diagnosticSeverityOverrides = {
+              reportMissingImports = "error",
+              reportUnusedImport = "none",
+            },
             -- Ignore all files for analysis to exclusively use Ruff for linting
             ignore = { '*' },
           },
@@ -250,10 +255,6 @@ return {
       },
     })
 
-
-    lspconfig.pyright.setup({
-      settings = {
-        python = { analysis = { ignore = { "*" } } }
 
     lspconfig.editorconfig_checker.setup({
       on_attach = on_attach,

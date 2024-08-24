@@ -15,6 +15,8 @@ local spell_util = require("utils.spell")
       --
       ["<Leader>w"] = { "<Cmd>wall<CR>", desc = "Write all" },
       --
+      ["<Leader><Leader>"] = { desc = "Etc" },
+      --
       -- ["<Leader>-"] = { "<Cmd>Oil --float<CR>", desc = "Oil - Open parent directory" },
       --
       -- Jump to previous position with Alt-b
