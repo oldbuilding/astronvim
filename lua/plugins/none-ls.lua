@@ -106,7 +106,7 @@ return {
     --   },
     --   factory = helpers.formatter_factory,
     -- })
-    --
+
     -- local ts_standard_formatter = require("null-ls.helpers").make_builtin({
     --   name = "ts-standard",
     --   method = require("null-ls.methods").internal.FORMATTING,
@@ -130,8 +130,6 @@ return {
         -- ruff_linter,
         -- luacheck_diagnostic,
 
-        -- builtin sources --
-        --
         null_ls.builtins.diagnostics.credo,
 
         null_ls.builtins.diagnostics.editorconfig_checker.with({
@@ -144,22 +142,18 @@ return {
         }),
 
         null_ls.builtins.diagnostics.stylelint,
-
         null_ls.builtins.diagnostics.selene,
-
+        null_ls.builtins.diagnostics.editorconfig_checker,
         null_ls.builtins.diagnostics.yamllint,
         --
-        --
         -- FORMATTERS
-        --
-        -- custom sources --
         -- eslint_d_formatter,
         fixjson_formatter,
         ruff_formatter,
         -- ts_standard_formatter,
-        --
-        -- builtin sources --
-        --
+
+        null_ls.builtins.formatting.stylua,
+
         null_ls.builtins.formatting.clang_format.with({
           command = paths.get_mason_bin() .. "/clang_format"
         }),
@@ -175,26 +169,26 @@ return {
           filetypes = { "yaml", "json" },
         }),
 
-        null_ls.builtins.formatting.stylelint.with({
-          command = paths.get_mason_bin() .. "/stylelint"
-        }),
+        -- null_ls.builtins.formatting.stylelint.with({
+          -- command = paths.get_mason_bin() .. "/stylelint"
+        -- }),
 
-        null_ls.builtins.formatting.shfmt.with({
-          command = paths.get_mason_bin() .. "shfmt"
-        }),
+        -- null_ls.builtins.formatting.shfmt.with({
+          -- command = paths.get_mason_bin() .. "shfmt"
+        -- }),
 
-        null_ls.builtins.formatting.shellharden.with({
-          command = paths.get_brew_bin() .. "/shellharden"
-        }),
+        -- null_ls.builtins.formatting.shellharden.with({
+          -- command = paths.get_brew_bin() .. "/shellharden"
+        -- }),
 
-        null_ls.builtins.formatting.stylua.with({
-          command = paths.get_mason_bin() .. "/stylua"
-        }),
+        -- null_ls.builtins.formatting.stylua.with({
+          -- command = paths.get_mason_bin() .. "/stylua"
+        -- }),
 
-        null_ls.builtins.formatting.yamlfix.with({
-          command = paths.get_mason_bin() .. "/yamlfix"
-        }),
-      }
+        -- null_ls.builtins.formatting.yamlfix.with({
+          -- command = paths.get_mason_bin() .. "/yamlfix"
+        -- }),
+      },
     })
   end
 }

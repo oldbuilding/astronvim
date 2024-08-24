@@ -59,6 +59,12 @@ return {
   { "max397574/better-escape.nvim", enabled = false },
   -- You can also easily customize additional setup of plugins that is outside of the plugin's setup call
   {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+        require("colorizer").setup({ })
+    end,
+  },
+  {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
       require("astronvim.plugins.configs.luasnip")(plugin, opts) -- include the default astronvim config that calls the setup call
