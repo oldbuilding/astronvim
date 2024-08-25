@@ -49,14 +49,11 @@ require("lazy").setup({
     colorscheme = {
       "falcon",
       "night-owl",
+      "rose-pine",
+      "oh-lucy",
       "tokyonight",
       "kangawa",
-      "mini.base16",
       "bamboo",
-      "oxocarbon",
-      "astromars",
-      "habamax",
-      "rose-pine",
     },
   },
   colorscheme = "falcon",
@@ -68,7 +65,6 @@ require("lazy").setup({
       -- disable some rtp plugins, add more to your liking
       disabled_plugins = {
         "2html_plugin",
-        -- "editorconfig",
         "getscript",
         "getscriptPlugin",
         "gzip",
@@ -85,7 +81,6 @@ require("lazy").setup({
         "rrhelper",
         "shada",
         "spec",
-        -- "spellfile",
         "tar",
         "tarPlugin",
         "tohtml",

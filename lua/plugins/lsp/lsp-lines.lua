@@ -1,5 +1,5 @@
 -- if true then return {} end
-local M = {
+return {
   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   ft = "rust",
   lazy = false,
@@ -8,11 +8,7 @@ local M = {
   enabled = true,
   start = true,
   event = "LspAttach",
-}
-
-M.config = function()
-  -- local wk = require("which-key")
-  local opts = {
+  opts = {
     keys = {
       vim.keymap.set(
         "n",
@@ -25,8 +21,9 @@ M.config = function()
       virtual_text = false, -- Disable virtual_text since it's redundant due to lsp_lines.
       virtual_lines = { only_current_line = true },
     }),
-  }
-  require("lsp_lines").setup(opts)
-end
-
-return M
+  },
+  -- config = function(_, opts)
+  --   -- local wk = require("which-key")
+  --   require("lsp_lines").setup()
+  -- end
+}

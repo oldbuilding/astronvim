@@ -38,5 +38,6 @@ end
 
 -- require("plugins")
 require("plugins.lsp")
+require("utils")
 require("lazy_setup")
 -- require "config.polish"
