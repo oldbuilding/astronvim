@@ -172,7 +172,8 @@ return {
         focus = true,
         filter = {
           any = {
-            buf = 0, {
+            buf = 0,
+            {
               severity = vim.diagnostic.severity.ERROR,
               function(item)
                 -- limit items to the current project
@@ -194,7 +195,7 @@ return {
         focus = false,
         position = "bottom",
         type = "split",
-        params = { include_declaration = true, },
+        params = { include_declaration = true },
       },
       -- The LSP base mode for:
       -- * lsp_definitions, lsp_references, lsp_implementations
@@ -313,55 +314,53 @@ return {
     ["<Leader>xtf"] = false,
     ["<Leader>xtp"] = false,
     ["<Leader>xtn"] = false,
+    -- Disable diagnostic virtual text
+    {
+      "<Leader>xv",
+      "<Cmd>vim.diagnostic.config({ virtual_text = false, })<CR>",
+      desc = "Disable Virtual Text",
+    },
+
     {
       "<Leader>xda",
-      "<Cmd>Trouble diagnostics " ..
-        "win.wo.winfixwidth=true<CR>",
+      "<Cmd>Trouble diagnostics " .. "win.wo.winfixwidth=true<CR>",
       desc = "All Diagnostics",
     },
     {
       "<Leader>xdd",
-      "<Cmd>Trouble buffer_and_all_errors " ..
-        "win.wo.winfixwidth=true<CR>",
+      "<Cmd>Trouble buffer_and_all_errors " .. "win.wo.winfixwidth=true<CR>",
       desc = "Buffer+All Errors Diagnostics",
     },
     {
       "<Leader>xdD",
-      "<Cmd>Trouble focus=true " ..
-        "win.wo.winfixwidth=true<CR>",
+      "<Cmd>Trouble focus=true " .. "win.wo.winfixwidth=true<CR>",
       desc = "Focus on Diagnostics",
     },
     {
       "<Leader>xdp",
-      "<Cmd>Trouble buffer_and_all_errors prev " ..
-        "win.wo.winfixwidth=true<CR>",
+      "<Cmd>Trouble buffer_and_all_errors prev " .. "win.wo.winfixwidth=true<CR>",
       desc = "Prev Diagnostic",
     },
     {
       "<Leader>xdn",
-      "<Cmd>Trouble buffer_and_all_errors next " ..
-        "win.wo.winfixwidth=true " ..
-        "auto_close=true " ..
-        "focus=true<CR>",
+      "<Cmd>Trouble buffer_and_all_errors next " .. "win.wo.winfixwidth=true " .. "auto_close=true " .. "focus=true<CR>",
       desc = "Next Diagnostic",
     },
     -- SYMBOLS
     {
       "<Leader>xss",
-      "<Cmd>Trouble lsp_document_symbols " ..
-        "focus=true " ..
-        "auto_jump=true " ..
-        "win.position=right " ..
-        "win.wo.winfixwidth=true " ..
-        "auto_close=false " ..
-        "auto_refresh=true<CR>",
+      "<Cmd>Trouble lsp_document_symbols "
+        .. "focus=true "
+        .. "auto_jump=true "
+        .. "win.position=right "
+        .. "win.wo.winfixwidth=true "
+        .. "auto_close=false "
+        .. "auto_refresh=true<CR>",
       desc = "Document Symbols (Focus)",
     },
     {
       "<Leader>xsS",
-      "<Cmd>Trouble lsp_document_symbols " ..
-        "focus=false " ..
-        "win.position=bottom<CR>",
+      "<Cmd>Trouble lsp_document_symbols " .. "focus=false " .. "win.position=bottom<CR>",
       desc = "Document Symbols",
     },
     {
@@ -377,39 +376,39 @@ return {
     -- LSP DEFINITIONS
     {
       "<Leader>xxd",
-      "<Cmd>Trouble lsp toggle " ..
-        "focus=false " ..
-        "auto_jump=true " ..
-        "win.position=right " ..
-        "win.wo.winfixwidth=true " ..
-        "focus=true " ..
-        "auto_refresh=true " ..
-        "auto_close=true<CR>",
+      "<Cmd>Trouble lsp toggle "
+        .. "focus=false "
+        .. "auto_jump=true "
+        .. "win.position=right "
+        .. "win.wo.winfixwidth=true "
+        .. "focus=true "
+        .. "auto_refresh=true "
+        .. "auto_close=true<CR>",
       desc = "LSP Definitions",
     },
     -- LOCATION LIST / QUICKFIX LIST
     {
       "<Leader>xxl",
-      "<Cmd>Trouble loclist toggle " ..
-        "focus=false " ..
-        "auto_jump=true " ..
-        "win.position=right " ..
-        "win.wo.winfixwidth=true " ..
-        "focus=true " ..
-        "auto_refresh=true " ..
-        "auto_close=true<CR>",
+      "<Cmd>Trouble loclist toggle "
+        .. "focus=false "
+        .. "auto_jump=true "
+        .. "win.position=right "
+        .. "win.wo.winfixwidth=true "
+        .. "focus=true "
+        .. "auto_refresh=true "
+        .. "auto_close=true<CR>",
       desc = "Location List (Trouble)",
     },
     {
       "<Leader>xxf",
-      "<Cmd>Trouble qflist toggle " ..
-        "focus=false " ..
-        "auto_jump=true " ..
-        "win.position=right " ..
-        "win.wo.winfixwidth=true " ..
-        "focus=true " ..
-        "auto_refresh=true " ..
-        "auto_close=true<CR>",
+      "<Cmd>Trouble qflist toggle "
+        .. "focus=false "
+        .. "auto_jump=true "
+        .. "win.position=right "
+        .. "win.wo.winfixwidth=true "
+        .. "focus=true "
+        .. "auto_refresh=true "
+        .. "auto_close=true<CR>",
       desc = "Quickfix List (Trouble)",
     },
   },

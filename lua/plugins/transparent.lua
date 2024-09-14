@@ -15,5 +15,5 @@ return {
       },
       exclude = {}, -- table: groups you don't want to clear
     })
-  end
+  end,
 }

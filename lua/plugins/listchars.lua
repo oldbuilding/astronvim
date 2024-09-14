@@ -11,7 +11,7 @@ return {
         space = "·",
       },
       exclude_filetypes = {
-        "markdown"
+        "markdown",
       },
       lighten_step = 15,
       notifications = false,

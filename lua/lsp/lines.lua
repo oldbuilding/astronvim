@@ -10,16 +10,11 @@ return {
   event = "LspAttach",
   opts = {
     keys = {
-      vim.keymap.set(
-        "n",
-        "<leader>l",
-        ":lua require('lsp_lines').toggle()<CR>",
-        { desc = "Toggle lsp_lines", noremap = true, silent = true }
-      ), -- Toggle lsp lines
+      vim.keymap.set("n", "<leader>l", ":lua require('lsp_lines').toggle()<CR>", { desc = "Toggle lsp_lines", noremap = true, silent = true }), -- Toggle lsp lines
     },
     vim.diagnostic.config({
       virtual_text = false, -- Disable virtual_text since it's redundant due to lsp_lines.
-      virtual_lines = { only_current_line = true },
+      virtual_lines = { only_current_line = false },
     }),
   },
   -- config = function(_, opts)

@@ -1,8 +1,16 @@
-return {
-  require("plugins.lsp.lsp-lines"),
-  require("plugins.lsp.lsp-signature"),
-  require("plugins.lsp.nvim-lspconfig"),
-}
+local M = {}
+
+-- Import each LSP-related config file
+M.setup = function()
+  require("lsp.mason") -- Mason setup
+  require("lsp.lsp-config") -- LSP config setup
+  -- require("lsp.dap")         -- DAP setup
+  require("lsp.none-ls") -- null-ls setup
+  require("lsp.lines") -- lsp-lines setup
+  require("lsp.signature") -- lsp-signature setup
+end
+
+return M
 
 -- if true then return {} end
 -- local M = {}

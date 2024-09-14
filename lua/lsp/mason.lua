@@ -1,21 +1,42 @@
--- Customize Mason plugins
-
 ---@type LazySpec
 return {
-  -- use mason-lspconfig to configure LSP installations
+  {
+    "williamboman/mason.nvim",
+    cmd = {
+      "Mason",
+      "MasonInstall",
+      "MasonUninstall",
+      "MasonUninstallAll",
+      "MasonLog",
+    },
+    maps = {
+      ["n"] = {
+        ["<Leader>pm"] = { function() require("mason.ui").open() end, desc = "Mason Installer" },
+      },
+    },
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_uninstalled = "✗",
+          package_pending = "⟳",
+        },
+      },
+    },
+  },
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.automatic_installation = true
       opts.automatic_setup = true
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed, {
         "bashls",
         "jsonls",
         "lua_ls",
         "ruff",
+        "ruff_lsp",
         "pyright",
-        -- "tailwindcss",
         -- "omnisharp",
       })
     end,
@@ -23,15 +44,20 @@ return {
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
   {
     "jay-babu/mason-null-ls.nvim",
-    -- overrides `require("mason-null-ls").setup(...)`
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
     opts = function(_, opts)
+      -- overrides `require("mason-null-ls").setup(...)`
       opts.automatic_installation = true
       opts.automatic_setup = true
       -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed, {
         "csharp_ls",
         "diagnostic-ls",
-        "editorconfig-checker",
+        "editorconfig_checker",
         "fixjson",
         "json-lsp",
         "jsonlint",
@@ -47,6 +73,9 @@ return {
         "yamllint",
       })
     end,
+    config = function()
+      require("your.null-ls.config") -- require your null-ls config here (example below)
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -55,7 +84,7 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.automatic_installation = true
       opts.automatic_setup = true
-      opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
+      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed, {
         "bash-debug-adapter",
         "debugpy",
       })

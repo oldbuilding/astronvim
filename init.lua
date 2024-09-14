@@ -36,8 +36,22 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
--- require("plugins")
-require("plugins.lsp")
 require("utils")
+require("config.options").setup()
+require("config.environment").setup()
+require("config.diagnostics").setup()
+require("config.autocmd").setup()
+require("config.keymaps").setup()
+require("lsp").setup()
 require("lazy_setup")
--- require "config.polish"
+
+-- Register keymaps after lazy.nvim has loaded which-key.nvim
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyDone",
+  callback = function() require("config.keymaps").setup() end,
+})
+
+-- don't do anything in vscode instances
+-- if vim.g.vscode then
+--   return {}
+-- end

@@ -46,9 +46,9 @@ return {
     },
     config = function(_, opts)
       require("copilot").setup(opts)
-      vim.cmd [[
+      vim.cmd([[
         autocmd BufEnter * :Copilot enable
-      ]]
+      ]])
     end,
   },
 }

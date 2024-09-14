@@ -1,4 +1,3 @@
-
 return {
   "folke/flash.nvim",
   event = "VeryLazy",
@@ -15,7 +14,7 @@ return {
       -- when `false`, find only matches in the given direction
       wrap = true,
       ---@type Flash.Pattern.Mode
-      mode = "exact",  -- exact, fuzzy, search
+      mode = "exact", -- exact, fuzzy, search
       -- behave like `incsearch`
       incremental = false,
       -- Excluded filetypes and custom window filters
