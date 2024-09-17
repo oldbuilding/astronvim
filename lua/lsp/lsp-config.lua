@@ -1,4 +1,4 @@
--- if true then return {} end
+-- lua/lsp/lsp-config.lua
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },

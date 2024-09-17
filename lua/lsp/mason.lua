@@ -1,3 +1,4 @@
+-- lua/lsp/mason.lua
 ---@type LazySpec
 return {
   {
@@ -30,15 +31,15 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.automatic_installation = true
       opts.automatic_setup = true
-      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed, {
+      local additional_servers = {
         "bashls",
         "jsonls",
         "lua_ls",
-        "ruff",
-        "ruff_lsp",
+        "ruff-lsp",
         "pyright",
         -- "omnisharp",
-      })
+      }
+      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed or {}, additional_servers)
     end,
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
@@ -54,7 +55,7 @@ return {
       opts.automatic_installation = true
       opts.automatic_setup = true
       -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed, {
+      local additional_servers = {
         "csharp_ls",
         "diagnostic-ls",
         "editorconfig_checker",
@@ -71,7 +72,8 @@ return {
         "yaml-language-server",
         "yamlfix",
         "yamllint",
-      })
+      }
+      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed or {}, additional_servers)
     end,
     config = function()
       require("your.null-ls.config") -- require your null-ls config here (example below)

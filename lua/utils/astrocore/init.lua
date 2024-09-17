@@ -264,15 +264,16 @@ end
 ---@type table?
 M.which_key_queue = nil
 
---- Register queued which-key mappings
+
 function M.which_key_register()
-  if M.which_key_queue then
-    local wk_avail, wk = pcall(require, "which-key")
-    if wk_avail then
-      wk.add(M.which_key_queue)
-      M.which_key_queue = nil
-    end
+  local wk_avail, wk = pcall(require, "which-key")
+  if not wk_avail then return end
+  for _, mapping in ipairs(M.which_key_queue or {}) do
+    local mode = mapping.mode
+    mapping.mode = nil
+    wk.register({ [mapping[1]] = { name = mapping.group } }, mapping)
   end
+  M.which_key_queue = nil
 end
 
 --- Get an empty table of mappings with a key for each map mode
@@ -291,15 +292,12 @@ function M.empty_map_table()
 end
 
 --- Table based API for setting keybindings
----@param map_table AstroCoreMappings A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
----@param base? vim.keymap.set.Opts A base set of options to set on every keybinding
+---@param map_table table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
+---@param base? table A base set of options to set on every keybinding
 function M.set_mappings(map_table, base)
   local was_no_which_key_queue = not M.which_key_queue
-  -- iterate over the first keys for each mode
   for mode, maps in pairs(map_table) do
-    -- iterate over each keybinding set in the current mode
     for keymap, options in pairs(maps) do
-      -- build the options for the command accordingly
       if options then
         local cmd
         local keymap_opts = base or {}
@@ -311,7 +309,6 @@ function M.set_mappings(map_table, base)
           keymap_opts[1] = nil
         end
         if not cmd then -- if which-key mapping, queue it
-          ---@cast keymap_opts wk.Spec
           keymap_opts[1], keymap_opts.mode = keymap, mode
           if not keymap_opts.group then keymap_opts.group = keymap_opts.desc end
           if not M.which_key_queue then M.which_key_queue = {} end
@@ -322,8 +319,11 @@ function M.set_mappings(map_table, base)
       end
     end
   end
-  if was_no_which_key_queue and M.which_key_queue then M.on_load("which-key.nvim", M.which_key_register) end
+  if was_no_which_key_queue and M.which_key_queue then
+    M.on_load("which-key.nvim", M.which_key_register)
+  end
 end
+
 
 --- regex used for matching a valid URL/URI string
 M.url_matcher =

@@ -8,7 +8,39 @@ M.contains = function(list, item)
   return false
 end
 
-M.insert_unique = function(list, value)
+M.insert_unique = function(list, values)
+  -- Ensure list is a table
+  if not list then list = {} end
+
+  -- Ensure values is a table
+  if type(values) ~= "table" then
+    values = { values }
+  end
+
+  local inserted_any = false
+
+  -- Iterate over the values to insert
+  for _, value in ipairs(values) do
+    -- Check if the value already exists in the list
+    local exists = false
+    for _, v in ipairs(list) do
+      if v == value then
+        exists = true
+        break
+      end
+    end
+
+    -- If the value is not found, insert it
+    if not exists then
+      table.insert(list, value)
+      inserted_any = true
+    end
+  end
+
+  return inserted_any -- Return true if any value was inserted
+end
+
+M.insert_unique_single = function(list, value)
   -- Ensure list is a table
   if not list then list = {} end
 

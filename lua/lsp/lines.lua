@@ -1,4 +1,4 @@
--- if true then return {} end
+-- lua/lsp/lines.lua
 return {
   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   ft = "rust",

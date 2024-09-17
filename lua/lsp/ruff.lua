@@ -1,4 +1,4 @@
--- if true then return {} end
+-- lua/lsp/ruff.lua
 
 ---@type LazySpec
 return {

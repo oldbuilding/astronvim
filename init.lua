@@ -41,9 +41,11 @@ require("config.options").setup()
 require("config.environment").setup()
 require("config.diagnostics").setup()
 require("config.autocmd").setup()
-require("config.keymaps").setup()
+-- require("config.keymaps").setup()
 require("lsp").setup()
 require("lazy_setup")
+
+require("utils.astrocore")
 
 -- Register keymaps after lazy.nvim has loaded which-key.nvim
 vim.api.nvim_create_autocmd("User", {

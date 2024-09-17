@@ -1,4 +1,4 @@
--- if true then return {} end
+-- lua/lsp/signature.lua
 local M = {
   "ray-x/lsp_signature.nvim",
 }
