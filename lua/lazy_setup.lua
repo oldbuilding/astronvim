@@ -1,65 +1,67 @@
-require("lazy").setup({
-  -- Mason setup should be early in the configuration
-  { import = "plugins" },
-} --[[@as LazySpec]], {
-  -- Configure any other `lazy.nvim` configuration options here
-  install = {
-    colorscheme = {
-      "falcon",
-      "night-owl",
-      "rose-pine",
-      "oh-lucy",
-      "tokyonight",
-      "kangawa",
-      "bamboo",
-    },
-  },
-  colorscheme = "falcon",
-  background = "dark",
-  ui = { backdrop = 60, border = "rounded" },
-  checker = { enabled = true },
-  performance = {
-    rtp = {
-      -- disable some rtp plugins, add more to your liking
-      disabled_plugins = {
-        "2html_plugin",
-        "getscript",
-        "getscriptPlugin",
-        "gzip",
-        "logipat",
-        "man",
-        "matchit",
-        "matchparen",
-        "netrw",
-        "netrwFileHandlers",
-        "netrwPlugin",
-        "netrwSettings",
-        "osc52",
-        "rplugin",
-        "rrhelper",
-        "shada",
-        "spec",
-        "tar",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
-  pkg = {
-    enabled = true,
-    cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
-    -- the first package source that is found for a plugin will be used.
-    sources = {
-      "lazy",
-      "rockspec", -- will only be used when rocks.enabled is true
-      "packspec",
-    },
-  },
-  rocks = {
-    enabled = true,
-    root = vim.fn.stdpath("data") .. "/lazy-rocks",
+local M = {}
+
+M.contains = function(list, item)
+  if not list then return false end
+  for _, value in ipairs(list) do
+    if value == item then return true end
+  end
+  return false
+end
+
+M.insert_unique = function(list, values)
+  -- Ensure list is a table
+  if not list then list = {} end
+
+  -- Ensure values is a table
+  if type(values) ~= "table" then
+    values = { values }
+  end
+
+  local inserted_any = false
+
+  -- Iterate over the values to insert
+  for _, value in ipairs(values) do
+    -- Check if the value already exists in the list
+    local exists = false
+    for _, v in ipairs(list) do
+      if v == value then
+        exists = true
+        break
+      end
+    end
+
+    -- If the value is not found, insert it
+    if not exists then
+      table.insert(list, value)
+      inserted_any = true
+    end
+  end
+
+  if inserted_any then
+    return list
+  else
+    return {}
+  end
+end
+
+M.insert_unique_single = function(list, value)
+  -- Ensure list is a table
+  if not list then list = {} end
+
+  -- Check if the value already exists in the list
+  for _, v in ipairs(list) do
+    if v == value then
+      return false -- Value already exists, do nothing
+    end
+  end
+
+  -- If the value is not found, insert it
+  table.insert(list, value)
+  return true -- Value was inserted
+end
+
+return M
     server = "https://nvim-neorocks.github.io/rocks-binaries/",
+    k,
   },
 } --[[@as LazyConfig]])
