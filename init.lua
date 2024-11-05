@@ -36,6 +36,24 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+-- Plugin manager setup using lazy.nvim
+require("lazy").setup({
+  -- Setup noice.nvim here
+  {
+    "folke/noice.nvim",
+    config = function(_, opts) require("noice").setup(opts) end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
+
+  -- Other plugins configuration
+  { "nvim-lua/plenary.nvim" }, -- Example: Plenary (utility functions)
+  { "nvim-telescope/telescope.nvim" }, -- Example: Telescope (fuzzy finder)
+  -- Add more plugins as needed
+})
+
 -- require("plugins")
 require("plugins.lsp")
 require("utils")
