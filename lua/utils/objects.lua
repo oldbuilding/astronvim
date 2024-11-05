@@ -13,9 +13,7 @@ M.insert_unique = function(list, values)
   if not list then list = {} end
 
   -- Ensure values is a table
-  if type(values) ~= "table" then
-    values = { values }
-  end
+  if type(values) ~= "table" then values = { values } end
 
   local inserted_any = false
 
@@ -37,7 +35,11 @@ M.insert_unique = function(list, values)
     end
   end
 
-  return inserted_any -- Return true if any value was inserted
+  if inserted_any then
+    return list
+  else
+    return {}
+  end
 end
 
 M.insert_unique_single = function(list, value)

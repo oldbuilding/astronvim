@@ -53,7 +53,7 @@ M.config = function()
   local servers = {
     "bashls",
     "lua_ls",
-    "tsserver",
+    "ts_ls",
     "ruff",
     "ruff_lsp",
     "pyright",

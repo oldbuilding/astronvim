@@ -31,15 +31,14 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.automatic_installation = true
       opts.automatic_setup = true
-      local additional_servers = {
+      vim.list_extend(opts.ensure_installed, {
         "bashls",
         "jsonls",
         "lua_ls",
         "ruff-lsp",
         "pyright",
         -- "omnisharp",
-      }
-      opts.ensure_installed = require("utils.objects").insert_unique(opts.ensure_installed or {}, additional_servers)
+      })
     end,
   },
   -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
