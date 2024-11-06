@@ -102,23 +102,19 @@ return {
       settings = {
         pylsp = {
           plugins = {
-            editorconfig = { enabled = false },
-            basedpyright = { enabled = false },
-            ruff = { enabled = true },
-            pycodestyle = { enabled = false },
-            pydocstyle = { enabled = false },
-            pylint = { enabled = false },
+            bandit = { enabled = false },
+            black = { enabled = false, maxLineLength = 133 },
+            basedpyright = { enabled = false, maxLineLength = 133 },
+            isort = { enabled = false, maxLineLength = 133 },
+            pycodestyle = { enabled = false, maxLineLength = 133 },
+            pydocstyle = { enabled = false, maxLineLength = 133 },
+            pylint = { enabled = false, maxLineLength = 133 },
+            pyflakes = { enabled = false, maxLineLength = 133 },
+            ruff = { enabled = true, maxLineLength = 133 },
             flake8 = { enabled = false },
             mypy = { enabled = false },
-            yapf = { enabled = false },
-            isort = { enabled = false },
-            black = { enabled = false },
             jedi = { enabled = false },
             mccabe = { enabled = false },
-            pyflakes = { enabled = false },
-            bandit = { enabled = false },
-            radon = { enabled = false },
-            rope = { enabled = false },
             pyls_isort = { enabled = false },
             pyls_black = { enabled = false },
             pyls_mypy = { enabled = false },
@@ -131,24 +127,9 @@ return {
             pyls_radon = { enabled = false },
             pyls_rope = { enabled = false },
             pyls_jedi = { enabled = false },
-          },
-        },
-      },
-    })
-
-    lspconfig.basedpyright.setup({
-      enabled = false,
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = {
-        basedpyright = {
-          -- Using Ruff's import organizer
-          disableOrganizeImports = true,
-        },
-        python = {
-          analysis = {
-            -- Ignore all files for analysis to exclusively use Ruff for linting
-            ignore = { "*" },
+            radon = { enabled = false },
+            rope = { enabled = false },
+            yapf = { enabled = false },
           },
         },
       },

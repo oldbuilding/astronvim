@@ -21,8 +21,11 @@ M.config = function()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   local on_attach = function(client, bufnr)
-    -- format on save
-    if client.server_capabilities.document_formatting then
+    -- Disable formatting for all clients except Ruff
+    if client.name ~= "ruff" then client.server_capabilities.document_formatting = false end
+
+    -- Format on save only for Ruff
+    if client.name == "ruff" and client.server_capabilities.document_formatting then
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("Format", {
           clear = true,
@@ -31,13 +34,8 @@ M.config = function()
         callback = function() vim.lsp.buf.format() end,
       })
     end
-    if require("utils.objects").contains(explicit_exclusions, client.name) then
-      client.stop()
-      require("utils.logging").notify("Excluded LSP: " .. client.name, vim.log.levels.INFO)
-      return
-    end
 
-    local bufopts = { noremap = true, silent = true, buffer = 0 }
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -55,7 +53,6 @@ M.config = function()
     "lua_ls",
     "ts_ls",
     "ruff",
-    "ruff_lsp",
     "pyright",
     "editorconfig_checker",
     "nil_ls",
@@ -65,31 +62,15 @@ M.config = function()
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-      pyright = {
-        -- Using Ruff's import organizer
-        disableOrganizeImports = true,
-      },
       python = {
         analysis = {
           autoImportCompletions = true,
+          ignore = { "*" }, -- Ignore all files to exclusively use Ruff for linting
           diagnosticSeverityOverrides = {
             reportMissingImports = "error",
             reportUnusedImport = "none",
           },
-          -- Ignore all files for analysis to exclusively use Ruff for linting
-          ignore = { "*" },
         },
-      },
-    },
-  }
-
-  local editorconfig_checker_config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      python = {
-        format = { enabled = false },
-        lint = { enabled = false },
       },
     },
   }
@@ -104,120 +85,17 @@ M.config = function()
     },
   }
 
-  local ruff_lsp_config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings_ = {
-      linelength = 180,
-      ruff = {
-        format = {
-          enable = true,
-        },
-        lint = { select = { "ALL" } },
-        fix = { select = { "ALL" } },
-      },
-    },
-    init_options = {
-      settings_ = {
-        linelength = 180,
-        editorconfig_checker = nil,
-        ruff = {
-          format = {
-            enable = true,
-          },
-          lint = { select = { "ALL" } },
-          fix = { select = { "ALL" } },
-        },
-      },
-    },
-  }
-
-  local ruff_config = {
-    on_attach = function(client, bufnr)
-      -- Default on_attach function
-      require("lsp").common_on_attach(client, bufnr)
-    end,
-    settings = {
-      ruff = {
-        -- General configuration options
-        configuration = Paths.find_project_root() .. "/.ruff.toml",
-        --       configurationPreference = "editorFirst", -- "filesystemFirst",
-        configurationPreference = "ruff.toml", -- Default: Use 'pyproject.toml' over 'ruff.toml'
-        exclude = {}, -- Default: No paths are excluded
-
-        -- Linting options
-        lint = {
-          select = {}, -- Default: Select all rules
-          ignore = {}, -- Default: Ignore no rules
-          extendSelect = {}, -- Default: Do not extend selected rules
-          preview = false, -- Default: Do not enable preview mode
-        },
-
-        -- Formatting options
-        format = {
-          lineLength = 180,
-          preview = false, -- Default: Do not enable preview mode
-        },
-      },
-    },
-  }
-
-  local omnisharp_config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-    filetypes = { "cs", "csproj", "sln" },
-  }
-
-  local csharp_ls_config = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "cs", "csproj", "sln" },
-  }
-
-  local gopls_settings = {
-    analyses = {
-      unusedparams = true,
-    },
-    hints = {
-      assignVariableTypes = true,
-      compositeLiteralFields = true,
-      compositeLiteralTypes = true,
-      constantValues = true,
-      functionTypeParameters = true,
-      parameterNames = true,
-      rangeVariableTypes = true,
-    },
-  }
-
-  -- setup servers
+  -- Setup servers
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim", "LUASNIP_ENV" },
-            -- LUASNIP_ENV is a custom variable declared in `lua/plugins/luasnip.lua`
-          },
-          hint = {
-            enable = true,
-          },
-        },
-        gopls = gopls_settings,
-        omnisharp = omnisharp_config,
-        ruff = ruff_config,
-        ruff_lsp = ruff_lsp_config,
-        pyright = pyright_config,
-        editorconfig_checker = editorconfig_checker_config,
-        lua_ls = lua_ls_config,
-        csharp_ls = csharp_ls_config,
-      },
     })
   end
-end
 
-M.toggle_inlay_hints = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end
+  -- Additional specific server configurations
+  lspconfig.pyright.setup(pyright_config)
+  lspconfig.lua_ls.setup(lua_ls_config)
+end
 
 return M

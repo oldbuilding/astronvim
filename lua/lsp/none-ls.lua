@@ -8,25 +8,25 @@ return {
     local methods = require("null-ls.methods")
     local paths = require("utils.paths")
 
-    -- local ruff_linter = helpers.make_builtin({
-    --   name = "ruff",
-    --   method = methods.internal.DIAGNOSTICS,
-    --   filetypes = { "python" },
-    --   generator_opts = {
-    --     command = paths.get_mason_bin() .. "/ruff",
-    --     args = { "check", "--stdin-filename", "$FILENAME", "--format", "json", "-" },
-    --     to_stdin = true,
-    --     format = "json",
-    --     on_output = helpers.diagnostics.from_json({
-    --       severities = {
-    --         ["E"] = helpers.diagnostics.severities.error,
-    --         ["W"] = helpers.diagnostics.severities.warning,
-    --         ["F"] = helpers.diagnostics.severities.information,
-    --       },
-    --     }),
-    --   },
-    --   factory = helpers.generator_factory,
-    -- })
+    local ruff_linter = helpers.make_builtin({
+      name = "ruff",
+      method = methods.internal.DIAGNOSTICS,
+      filetypes = { "python" },
+      generator_opts = {
+        command = paths.get_mason_bin() .. "/ruff",
+        args = { "check", "--stdin-filename", "$FILENAME", "--format", "json", "-" },
+        to_stdin = true,
+        format = "json",
+        on_output = helpers.diagnostics.from_json({
+          severities = {
+            ["E"] = helpers.diagnostics.severities.error,
+            ["W"] = helpers.diagnostics.severities.warning,
+            ["F"] = helpers.diagnostics.severities.information,
+          },
+        }),
+      },
+      factory = helpers.generator_factory,
+    })
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.py",
@@ -65,7 +65,7 @@ return {
         -- custom sources --
         --
         -- quick_lint_js,
-        -- ruff_linter,
+        ruff_linter,
         -- luacheck_diagnostic,
 
         null_ls.builtins.diagnostics.credo,

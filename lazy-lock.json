@@ -67,7 +67,7 @@
   "nvim-solar-paper": { "branch": "main", "commit": "36db3c6d154049d791f1e0397bd08d89da8016e6" },
   "nvim-surround": { "branch": "main", "commit": "ec2dc7671067e0086cdf29c2f5df2dd909d5f71f" },
   "nvim-transparent": { "branch": "main", "commit": "1a3d7d3b7670fecbbfddd3fc999ddea5862ac3c2" },
-  "nvim-treesitter": { "branch": "master", "commit": "ea3a37a9758d873feec3feac37a358e4225a5871" },
+  "nvim-treesitter": { "branch": "master", "commit": "98b3825999746b4b74cd3c962e608f53b47064af" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "3e450cd85243da99dc23ebbf14f9c70e9a0c26a4" },
   "nvim-ts-autotag": { "branch": "main", "commit": "e239a560f338be31337e7abc3ee42515daf23f5e" },
   "nvim-ts-context-commentstring": { "branch": "main", "commit": "9c74db656c3d0b1c4392fc89a016b1910539e7c0" },

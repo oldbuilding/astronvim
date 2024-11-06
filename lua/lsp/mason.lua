@@ -35,7 +35,7 @@ return {
         "bashls",
         "jsonls",
         "lua_ls",
-        "ruff-lsp",
+        "ruff",
         "pyright",
         -- "omnisharp",
       })
