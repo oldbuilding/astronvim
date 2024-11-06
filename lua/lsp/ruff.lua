@@ -1,37 +1,38 @@
--- lua/lsp/ruff.lua
-
 ---@type LazySpec
 return {
   "astral-sh/ruff-lsp",
-  enabled = false,
-  -- Configure `ruff-lsp`.
-  -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
-  -- For the default config, along with instructions on how to customize the settings
-  require("lspconfig").ruff_lsp.setup({
-    init_options = {
+  enabled = true,  -- Enable Ruff LSP
+  config = function()
+    local lspconfig = require("lspconfig")
+
+    -- Setup Ruff LSP
+    lspconfig.ruff.setup({
+      init_options = {
+        settings = {
+          fixAll = true,
+          organizeImports = true,
+          -- Any extra CLI arguments for `ruff` go here.
+          args = {
+            "--config",
+            "~/.config/ruff/ruff.toml",
+          },
+        },
+      },
+    })
+
+    -- Setup Pyright LSP to work with Ruff
+    lspconfig.pyright.setup({
       settings = {
-        fixAll = true,
-        organizeImports = true,
-        -- Any extra CLI arguments for `ruff` go here.
-        args = {
-          "--config",
-          "~/.config/ruff/ruff.toml",
+        pyright = {
+          disableOrganizeImports = true,  -- Using Ruff's import organizer
+        },
+        python = {
+          analysis = {
+            ignore = { "*" },  -- Ignore all files for analysis to exclusively use Ruff for linting
+          },
         },
       },
-    },
-  }),
-  require("lspconfig").pyright.setup({
-    settings = {
-      pyright = {
-        -- Using Ruff's import organizer
-        disableOrganizeImports = true,
-      },
-      python = {
-        analysis = {
-          -- Ignore all files for analysis to exclusively use Ruff for linting
-          ignore = { "*" },
-        },
-      },
-    },
-  }),
+    })
+  end,
 }
+

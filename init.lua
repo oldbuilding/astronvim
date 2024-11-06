@@ -42,7 +42,7 @@ require("config.environment").setup()
 require("config.diagnostics").setup()
 require("config.autocmd").setup()
 -- require("config.keymaps").setup()
--- require("lsp").setup()
+require("lsp").setup()
 require("lazy_setup")
 
 require("utils.astrocore")
